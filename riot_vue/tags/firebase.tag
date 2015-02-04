@@ -1,3 +1,102 @@
 <firebase>
-  <div>firebase</div>
+  <style>
+  ul.firebase_user {
+    padding: 0;
+  }
+
+  .firebase_user .user {
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    overflow: hidden;
+    transition: all .25s ease;
+  }
+
+  .firebase_user .user:last-child {
+    border-bottom: 1px solid #eee;
+  }
+  .errors {
+    color: #f00;
+  }
+  </style>
+
+  <div><a href="http://jsfiddle.net/yyx990803/2ok0hp6c/light/" target="_blank">vuejs version</a></div>
+  <ul class="firebase_user">
+    <li each={ users } class="user">
+      <span>{ name } - { email }</span>
+      <button onclick={ parent.removeUser }>X</button>
+    </li>
+  </ul>
+  <form id="form" onsubmit={ addUser }>
+    <span>Name:</span>
+    <input name="nameInput" onkeyup="{ editName }">
+    <span>Email:</span>
+    <input name="emailInput" onkeyup="{ editEmail }">
+    <button disabled={ !userName || !userEmail || !validation.name || !validation.email }>Add User</button>
+  </form>
+  <ul class="errors">
+    <li if={ !validation.name }>Name cannot be empty.</li>
+    <li if={ !validation.email }>Please provide a valid email address.</li>
+  </ul>
+
+  <script>
+  var baseURL = 'https://vue-demo.firebaseIO.com/'
+  var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  var self = this
+
+  var Users = new Firebase(baseURL + 'users')
+
+  Users.on('child_added', function (snapshot) {
+    var item = snapshot.val()
+    item.id = snapshot.name()
+    self.users.push(item)
+    self.update()
+  })
+
+  Users.on('child_removed', function (snapshot) {
+    var id = snapshot.name()
+    self.users.some(function (user) {
+      if (user.id === id) {
+        self.users.splice(self.users.indexOf(user), 1)
+        self.update()
+        return true
+      }
+    })
+  })
+
+  this.users = []
+
+  this.on('unmount', function(){
+    // stop the current firebase instance, otherwise next instance would fail.
+    Users.off();
+  })
+
+  this.validation = {name: true, email: true}
+
+  editName(e) {
+    this.validation.name = !!e.target.value
+    this.userName = this.capitalise(e.target.value)
+    this.nameInput.value = this.userName
+  }
+
+  editEmail(e) {
+    this.validation.email = emailRE.test(e.target.value)
+    this.userEmail = e.target.value
+  }
+
+  addUser(e) {
+    Users.push({name: this.userName, email: this.userEmail})
+    this.nameInput.value = this.emailInput.value = ''
+  }
+
+  removeUser(e) {
+    new Firebase(baseURL + 'users/' + e.item.id).remove()
+  }
+
+  capitalise(v) {
+    return v.charAt(0).toUpperCase() + v.slice(1);
+  }
+  </script>
 </firebase>

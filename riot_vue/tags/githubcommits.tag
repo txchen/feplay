@@ -13,6 +13,7 @@
   }
   </style>
 
+  <div><a href="http://jsfiddle.net/yyx990803/wd64qs6f/light/" target="_blank">vuejs version</a></div>
   <h1>Latest Riotjs Commits</h1>
   <span each={ name, i in branches }>
     <input type="radio" name="branch" id={ name } value={ name } checked={ parent.currentBranch == name }
@@ -23,15 +24,16 @@
   <ul class="commit">
     <li each={ commits }>
       <a href={ html_url } target="_blank">{ sha.slice(0, 7) }</a>
-      - <span class="message">{ commit.message }</span><br>
+      - <span class="message">{ parent.truncate(commit.message) }</span><br>
       by <span class="author">{ commit.author.name }</span>
-      at <span class="date">{ commit.author.date }</span>
+      at <span class="date">{ parent.formatDate(commit.author.date) }</span>
     </li>
   </ul>
 
   <script>
   var apiUrl = 'https://api.github.com/repos/muut/riotjs/commits?per_page=3&sha='
   var self = this
+  self.cont = '2014T10'
   self.branches = ['master', 'dev', 'gh-pages']
   self.currentBranch = 'master'
   self.commits = []
@@ -52,14 +54,12 @@
     xhr.send()
   }
 
-  // TODO: so far canot call this in expression
-  function truncate(v) {
+  truncate(v) {
     var newline = v.indexOf('\n')
     return newline > 0 ? v.slice(0, newline) : v
   }
 
-  // TODO: so far canot call this in expression
-  function formatDate(v) {
+  formatDate(v) {
     return v.replace(/T|Z/g, ' ')
   }
 
