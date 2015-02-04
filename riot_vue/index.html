@@ -1,1 +1,23 @@
-riot_vue
+<!doctype html>
+<html>
+  <head>
+    <title>Riot vue</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+
+  <body>
+    <app></app>
+    <script src="app.tag" type="riot/tag"></script>
+    <script src="tags/markdown.tag" type="riot/tag"></script>
+    <script src="tags/githubcommits.tag" type="riot/tag"></script>
+    <script src="tags/firebase.tag" type="riot/tag"></script>
+    
+    <script src="https://cdn.jsdelivr.net/g/riot@2.0(riot.min.js+compiler.min.js)"></script>
+
+    <script>
+    riot.route.exec(function(example) {
+      riot.mount('app', {example: example})
+    })
+    </script>
+  </body>
+</html>
