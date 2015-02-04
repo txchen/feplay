@@ -14,7 +14,10 @@
   var self = this
 
   this.on('mount', function(){
-    self.loadExample(opts.example ? opts.example : 'markdown')
+    riot.route.exec(function(example) {
+      console.log('initial route is ' + example)
+      self.loadExample(example || 'markdown')
+    })
   })
 
   loadExample(example) {
@@ -25,8 +28,8 @@
     }
     document.getElementById('nav').insertAdjacentHTML('afterend', '<example-content id="example-content"></example-content>')
     riot.mountTo(document.getElementById('example-content'), example)
-    // this will trigger unmount if the dom is detached, important!
-    // other wise memory leak
+    // this will trigger unmount if element is removed from dom, important!
+    // otherwise it would cause memory leak
     riot.update()
   }
 
