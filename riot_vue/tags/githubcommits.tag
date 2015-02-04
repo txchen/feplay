@@ -15,9 +15,9 @@
 
   <h1>Latest Riotjs Commits</h1>
   <span each={ name, i in branches }>
-    <input type="radio" name="branch" value={ name } checked={ parent.currentBranch == name }
+    <input type="radio" name="branch" id={ name } value={ name } checked={ parent.currentBranch == name }
       onclick={ parent.selectBranch }></input>
-    <label>{ name }</label>
+    <label for={ name }>{ name }</label>
   </span>
   <p>muut/riotjs@{ currentBranch }</p>
   <ul class="commit">
