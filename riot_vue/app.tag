@@ -5,6 +5,10 @@
       <li><a href='#markdown'>Markdown Editor</a></li>
       <li><a href='#githubcommits'>Github Commits</a></li>
       <li><a href='#firebase'>Firebase + Validation</a></li>
+      <li><a href='#gridcomponent'>Grid Component</a></li>
+      <li><a href='#treeview'>Tree View</a></li>
+      <li><a href='#svggraph'>SVG Graph</a></li>
+      <li><a href='#imageslider'>Image Slider Component</a></li>
     </ul>
   </nav>
   <example-content id='example-content'>
