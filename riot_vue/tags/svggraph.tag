@@ -1,3 +1,105 @@
 <svggraph>
-  <div>svggraph</div>
+  <style>
+  #svg polygon {
+    fill: #42b983;
+    opacity: .75;
+  }
+
+  #svg circle {
+    fill: transparent;
+    stroke: #999;
+  }
+
+  #svg label {
+    display: inline-block;
+    margin-left: 10px;
+    width: 20px;
+  }
+
+  #svg #raw, #svg #left {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 30px;
+  }
+  </style>
+
+  <p style="font-size:12px">* input[type="range"] requires IE10 or above.</p>
+
+  <div id="svg">
+    <div id="left">
+      <svg width="200" height="200">
+        <g>
+          <polygon points={ points() }></polygon>
+          <circle cx="100" cy="100" r="80"></circle>
+        </g>
+      </svg>
+      <div each={ stats }>
+        <label>{ label }</label>
+        <input type="range" value={ value } oninput={ parent.changeValue } min="0" max="100">
+        <span>{ value }</span>
+        <button onclick={ parent.removeStat }>X</button>
+      </div>
+      <form id={ addstat } onsubmit={ addStat }>
+        <input name="newlabel" onkeyup={ editAdd }>
+        <button disabled={ !newlabelvalue }>Add a Stat</button>
+      </form>
+    </div>
+    <pre id="raw">{ JSON.stringify(stats, null, 2) }</pre>
+  </div>
+
+  <script>
+  var self = this
+  self.stats = [
+    { label: 'A', value: 100 },
+    { label: 'B', value: 100 },
+    { label: 'C', value: 100 },
+    { label: 'D', value: 100 },
+    { label: 'E', value: 100 },
+    { label: 'F', value: 100 }
+  ]
+
+  removeStat(e) {
+    if (self.stats.length > 3) {
+      self.stats.splice(self.stats.indexOf(e.item), 1)
+    } else {
+      alert('Can\'t delete more!')
+    }
+  }
+
+  changeValue(e) {
+    e.item.value = e.target.value
+  }
+
+  editAdd(e) {
+    self.newlabelvalue = e.target.value
+  }
+
+  addStat(e) {
+    self.stats.push({label: self.newlabelvalue, value: 100})
+    self.newlabelvalue = self.newlabel.value = ''
+  }
+
+  points() {
+    var total = self.stats.length
+    return self.stats.map(function (stat, i) {
+      var point = self.valueToPoint(stat.value, i, total)
+      return point.x + ',' + point.y
+    }).join(' ')
+  }
+
+  valueToPoint(value, index, total) {
+    var x     = 0
+    var y     = -value * 0.8
+    var angle = Math.PI * 2 / total * index
+    var cos   = Math.cos(angle)
+    var sin   = Math.sin(angle)
+    var tx    = x * cos - y * sin + 100
+    var ty    = x * sin + y * cos + 100
+    return {
+      x: tx,
+      y: ty
+    }
+  }
+  </script>
+
 </svggraph>
