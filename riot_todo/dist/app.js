@@ -3,7 +3,7 @@
 },{}],2:[function(require,module,exports){
 var riot=require("riot");require("./tags/todo.tag"),riot.mount("todo");
 },{"./tags/todo.tag":3,"riot":1}],3:[function(require,module,exports){
-var riot=require("riot");riot.tag("todo",'<div onclick="{ todoclick }">{ numb }</div> <ul> <li each="{n, i in data}">{n}</li> <ul>',function(){this.data=[1,2,3],this.numb=1,this.todoclick=function(){this.trigger("addone")}.bind(this),this.on("addone",function(){this.numb=this.numb+3})});
+var riot=require("riot");riot.tag("todo",'<div onclick="{ todoclick }">{ numb }</div> <ul> <li each="{n, i in data}">{n}</li> <ul>',function(){this.data=[1,2,3,4,5],this.numb=1,this.todoclick=function(){this.trigger("addone")}.bind(this),this.on("addone",function(){this.numb=this.numb+3})});
 },{"riot":1}]},{},[2])
 
 

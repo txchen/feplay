@@ -1,3 +1,9 @@
+@import "todo.css";
+
+:root {
+  --purple: #847AD1;
+}
+
 html, body {
   margin: 0;
   height: 100%;
@@ -6,6 +12,6 @@ html, body {
 }
 
 body {
-  margin: 80px auto;
+  margin: 40px auto;
   width: 600px;
 }
