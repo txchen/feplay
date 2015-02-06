@@ -1,0 +1,11 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+body {
+  margin: 80px auto;
+  width: 600px;
+}
