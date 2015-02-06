@@ -31,6 +31,8 @@
     "prebuild": "npm run clean -s",
     "build": "npm run build:scripts -s && npm run build:css -s && npm run build:markup -s",
     "build:scripts": "browserify -t riotify -d src/app.js -p [minifyify --compressPath . --map app.js.map --output dist/app.js.map] -o dist/app.js",
+
+    "COMMENT": "TODO: myth should support creating separated map file.",
     "build:css": "myth -s -c src/main.css dist/main.css",
     "build:markup": "cp src/index.html index.html",
     "test": "echo test_pass",
