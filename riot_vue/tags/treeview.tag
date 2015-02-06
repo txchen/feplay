@@ -13,7 +13,6 @@
   }
   </style>
 
-  <div><a href="http://jsfiddle.net/yyx990803/2e53p4wq/light/" target="_blank">vuejs version</a></div>
   <p>(You can double click on an item to turn it into a folder.)</p>
   <ul id='treeview'>
     <li>

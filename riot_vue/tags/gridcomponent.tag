@@ -1,5 +1,4 @@
 <gridcomponent>
-  <div><a href="http://jsfiddle.net/yyx990803/2kqzhhq4/light/" target="_blank">vuejs version</a></div>
   <input name="query" onkeyup={ search }></input>
   <table>
     <thead>

@@ -21,7 +21,15 @@
     <script src="//cdn.firebase.com/js/client/1.1.2/firebase.js"></script>
 
     <script>
-    riot.mount('app')
+    riot.mount('app', [
+      {link:"#markdown", title:"Markdown Editor", vuelink:"http://vuejs.org/examples/index.html"},
+      {link:"#githubcommits", title:"Github Commits", vuelink:"http://vuejs.org/examples/commits.html"},
+      {link:"#firebase", title:"Firebase + Validation", vuelink:"http://vuejs.org/examples/firebase.html"},
+      {link:"#gridcomponent", title:"Grid Component", vuelink:"http://vuejs.org/examples/grid-component.html"},
+      {link:"#treeview", title:"Tree View", vuelink:"http://vuejs.org/examples/tree-view.html"},
+      {link:"#svggraph", title:"SVG Graph", vuelink:"http://vuejs.org/examples/svg.html"},
+      {link:"#imageslider", title:"Image Slider Component", vuelink:"http://vuejs.org/examples/image-slider.html"}
+    ])
     </script>
   </body>
 </html>

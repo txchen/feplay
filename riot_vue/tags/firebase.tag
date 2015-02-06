@@ -21,7 +21,6 @@
   }
   </style>
 
-  <div><a href="http://jsfiddle.net/yyx990803/2ok0hp6c/light/" target="_blank">vuejs version</a></div>
   <ul class="firebase_user">
     <li each={ users } class="user">
       <span>{ name } - { email }</span>

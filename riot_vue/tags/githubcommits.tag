@@ -13,7 +13,6 @@
   }
   </style>
 
-  <div><a href="http://jsfiddle.net/yyx990803/wd64qs6f/light/" target="_blank">vuejs version</a></div>
   <h1>Latest Riotjs Commits</h1>
   <span each={ name, i in branches }>
     <input type="radio" name="branch" id={ name } value={ name } checked={ parent.currentBranch == name }

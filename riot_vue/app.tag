@@ -1,18 +1,19 @@
 <app>
-  <nav id='nav'>
+  <nav id="sidenavs">
     <h2>Examples</h2>
     <ul>
-      <li><a href='#markdown'>Markdown Editor</a></li>
-      <li><a href='#githubcommits'>Github Commits</a></li>
-      <li><a href='#firebase'>Firebase + Validation</a></li>
-      <li><a href='#gridcomponent'>Grid Component</a></li>
-      <li><a href='#treeview'>Tree View</a></li>
-      <li><a href='#svggraph'>SVG Graph</a></li>
-      <li><a href='#imageslider'>Image Slider Component</a></li>
+      <li each={ opts }>
+        <a class={ current: parent.isCurrent(link) } href={ link }>{ title }</a>
+        <span>-</span>
+        <a href={ vuelink } target="_blank">(vue)</a>
+      </li>
     </ul>
+    <p><a href="https://github.com/txchen/feplay/tree/gh-pages/riot_vue" target="_blank">Source Code</a></p>
   </nav>
-  <example-content id='example-content'>
-  </example-content>
+  <div id="example-content">
+    <example-content id="example">
+    </example-content>
+  </div>
 
   <script>
   var self = this
@@ -24,14 +25,20 @@
     })
   })
 
+  isCurrent(link) {
+    return link == window.location.hash
+  }
+
   loadExample(example) {
     console.log('loadExample ' + example)
-    var oldElement = document.getElementById('example-content')
+    var oldElement = document.getElementById('example')
     if (oldElement) {
       oldElement.remove()
     }
-    document.getElementById('nav').insertAdjacentHTML('afterend', '<example-content id="example-content"></example-content>')
-    riot.mountTo(document.getElementById('example-content'), example)
+    exampleEle = document.createElement('example-content' )
+    exampleEle.id = 'example'
+    document.getElementById('example-content').appendChild(exampleEle)
+    riot.mountTo(document.getElementById('example'), example)
     // this will trigger unmount if element is removed from dom, important!
     // otherwise it would cause memory leak
     riot.update()

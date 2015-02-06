@@ -67,7 +67,6 @@
   }
   </style>
 
-  <div><a href="http://jsfiddle.net/yyx990803/qnbmymfm/light/" target="_blank">vuejs version</a></div>
   <div id="slider">
     <my-slider data={ images }>
     </my-slider>

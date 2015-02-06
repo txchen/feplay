@@ -22,7 +22,6 @@
     padding-right: 30px;
   }
   </style>
-  <div><a href="http://jsfiddle.net/yyx990803/36ew1g5c/light/" target="_blank">vuejs version</a></div>
   <p style="font-size:12px">* input[type="range"] requires IE10 or above.</p>
 
   <div id="svg">

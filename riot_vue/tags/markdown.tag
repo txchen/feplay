@@ -1,8 +1,37 @@
 <markdown>
-  <div><a href="http://jsfiddle.net/yyx990803/wy2qf6yx/light/" target="_blank">vuejs version</a></div>
-  <div id='editor'>
+  <style>
+  #editor {
+    margin: 0;
+    height: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+  }
+
+  #editor textarea, #editor div {
+    display: inline-block;
+    width: 49%;
+    height: 100%;
+    vertical-align: top;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+
+  #editor textarea {
+    border: none;
+    border-right: 1px solid #ccc;
+    resize: none;
+    outline: none;
+    background-color: #f6f6f6;
+    font-size: 14px;
+    font-family: 'Monaco', courier, monospace;
+    padding: 20px;
+  }
+  </style>
+  <div id="editor">
     <textarea onkeyup={ edit }># hello</textarea>
-    <div name='resultdiv'></div>
+    <div name="resultdiv"></div>
   </div>
 
   <script>
