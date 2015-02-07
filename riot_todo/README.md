@@ -1,6 +1,6 @@
 ## TodoMVC via Riotjs
 
-Online demo: http://txchen.github.io/feplay/riot_todo/
+Online demo: http://txchen.github.io/feplay/riot_todo/dist/
 
 * npm as dev tool, no gulp or grunt. Inspired by [this](https://github.com/keithamus/npm-scripts-example)
 * tags are compiled by riotify, and source map is supported

@@ -34,15 +34,15 @@
 
     "COMMENT": "TODO: myth should support creating separated map file.",
     "build:css": "myth -s -c src/main.css dist/main.css",
-    "build:markup": "cp src/index.html index.html",
+    "build:markup": "cp src/index.html dist/index.html",
     "test": "echo test_pass",
     "watch": "parallelshell \"npm run watch:test -s\" \"npm run watch:build -s\"",
     "watch:test": "echo test_pass",
     "watch:build": "nodemon -q -w src/ --ext '.' --exec 'npm run build'",
     "open-dev": "opener http://localhost:9090",
-    "serve": "http-server -p 9090 ./",
+    "serve": "http-server -p 9090 dist/",
     "live-reload": "live-reload --port 9091 dist/",
-    "dev": "npm run open-dev -s & parallelshell \"npm run live-reload -s\" \"npm run serve -s\" \"npm run watch -s\""
+    "dev": "npm run open-dev & parallelshell \"npm run live-reload\" \"npm run serve\" \"npm run watch\""
   },
   "dependencies": {
     "riot": "^2.0.7"
