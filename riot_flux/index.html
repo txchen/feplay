@@ -1,0 +1,26 @@
+<!doctype html5>
+<html>
+  <head>
+    <title>Riot Flux Demo</title>
+    <link rel="stylesheet" href="css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+    <products/>
+    <cart/>
+    <script src="js/CartStore.js"></script>
+    <script src="js/ProductStore.js"></script>
+    <script src="js/cart.tag" type="riot/tag"></script>
+    <script src="js/products.tag" type="riot/tag"></script>
+    <script src="//cdn.jsdelivr.net/g/riot@2.0(riot.min.js+compiler.min.js)"></script>
+    <script src="js/RiotControl.js"></script>
+
+    <script>
+    var cartStore = new CartStore()
+    var productStore = new ProductStore()
+    RiotControl.addStore(cartStore)
+    RiotControl.addStore(productStore)
+    riot.mount('*')
+    </script>
+  </body>
