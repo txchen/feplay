@@ -1,13 +1,71 @@
 <gridcomponent>
-  <input name="query" onkeyup={ search }></input>
-  <table>
+  <style>
+  #grid {
+    border: 2px solid #42b983;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+
+  #grid th {
+    background-color: #42b983;
+    color: rgba(255,255,255,0.66);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -user-select: none;
+  }
+
+  #grid td {
+    background-color: #f9f9f9;
+  }
+
+  #grid th, #grid td {
+    min-width: 120px;
+    padding: 10px 20px;
+  }
+
+  #grid th.active {
+    color: #fff;
+  }
+
+  #grid th.active .arrow {
+    opacity: 1;
+  }
+
+  #grid .arrow {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    opacity: 0.66;
+  }
+
+  #grid .arrow.asc {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid #fff;
+  }
+
+  #grid .arrow.dsc {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #fff;
+  }
+  </style>
+
+  Search <input name="query" onkeyup={ search }></input>
+  <table id="grid">
     <thead>
       <tr>
-        <th each={ name, i in gridColumns } onclick={ parent.setSortKey }>{ name }</th>
+        <th each={ name, i in gridColumns } onclick={ parent.setSortKey }
+          class={ active: name == parent.sortKey }>{ name }
+          <span class="arrow { parent.reversed[name] ? 'dsc' : 'asc' }"></span>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr each={ row, i in orderedData((gridData)) }>
+      <tr each={ row, i in orderedData(filteredData(gridData)) }>
         <td each={ name, value in row }>{ value }</td>
       </tr>
     </tbody>
