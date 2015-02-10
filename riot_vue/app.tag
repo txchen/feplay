@@ -4,11 +4,11 @@
     <ul>
       <li each={ opts }>
         <a class={ current: parent.isCurrent(link) } href={ link }>{ title }</a>
-        <span>-</span>
-        <a href={ vuelink } target="_blank">(vue)</a>
       </li>
     </ul>
     <p><a href="https://github.com/txchen/feplay/tree/gh-pages/riot_vue" target="_blank">Source Code</a></p>
+    <p>RiotJs Ver: { riotver }</p>
+    <p><a href="http://vuejs.org/examples" target="_blank">Vuejs versions</a></p>
   </nav>
   <div id="example-content">
     <example-content id="example">
@@ -17,6 +17,7 @@
 
   <script>
   var self = this
+  self.riotver = riot.version
 
   this.on('mount', function(){
     riot.route.exec(function(example) {
