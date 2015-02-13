@@ -58,8 +58,7 @@
     { name }
     <span if={ isFolder() }>[{open ? '-' : '+'}]</span>
   </div>
-  <!-- TODO: now if is implemented as CSS display, so show must use isFolder as well, which should be removed -->
-  <ul if={ isFolder() } show={ isFolder() && open }>
+  <ul if={ isFolder() } show={ open }>
     <li each={ child, i in children }>
       <treeitem data={child}>
       </treeitem>
@@ -71,6 +70,7 @@
   var self = this
   self.name = opts.data.name
   self.children = opts.data.children
+  self.open = false
 
   isFolder() {
     return self.children && self.children.length
