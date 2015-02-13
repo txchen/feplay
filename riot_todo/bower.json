@@ -1,0 +1,9 @@
+{
+  "name": "todomvc-riot",
+  "dependencies": {
+    "todomvc-common": "~1.0.1",
+    "riotjs": "~2.0.8",
+    "todomvc-app-css": "~1.0.1"
+  },
+  "version": "1.0.0"
+}
