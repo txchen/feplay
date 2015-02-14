@@ -1,0 +1,10 @@
+<hackernews>
+  <h1>Hackernews reader</h1>
+  <p>This example uses hackernews' offical firebase API.</p>
+  <p>It uses npm to manage tasks in development, and uses browserify to pack all the javascript files and tag files into one single output js.</p>
+  <div>[ <a href="https://github.com/txchen/riot-hn">Source Code</a> ]</div>
+  <br>
+  <div>[ <a href="http://git.io/riot-hn">Online Demo</a> ]</div>
+  <br>
+  <a href="http://git.io/riot-hn"><img src="/img/hn.png"></a>
+</hackernews>
