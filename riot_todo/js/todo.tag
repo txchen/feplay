@@ -2,19 +2,17 @@
   <section id="todoapp">
     <header id="header">
       <h1>todos</h1>
-      <input id="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?"
-        onkeyup={ addTodo }>
+      <input id="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" onkeyup={ addTodo }>
     </header>
     <section id="main" show={ todos.length }>
       <input id="toggle-all" type="checkbox" checked={ allDone } onclick={ toggleAll }>
       <ul id="todo-list">
-        <todoitem each={ t, i in filteredTodos() } data={ t }>
-        </todoitem>
+        <todoitem each={ t, i in filteredTodos() } data={ t } parentview={ parent }></todoitem>
       </ul>
     </section>
     <footer id="footer" show={ todos.length }>
       <span id="todo-count">
-        <strong>{ remaining }</strong> items left
+        <strong>{ remaining }</strong> { remaining > 1 ? 'items' : 'item' } left
       </span>
       <ul id="filters">
         <!-- TODO: change to string after riot fixes the bug -->
@@ -35,13 +33,16 @@
   <script>
   var self = this
   self.todos = opts.data || []
-  self.activeFilter = 'all'
 
   self.on('update', function() {
     self.remaining = self.todos.filter(function(t) { return !t.completed}).length
     self.allDone = self.remaining == 0
-    todoStorage.save(self.todos)
+    self.saveTodos()
   })
+
+  saveTodos() {
+    todoStorage.save(self.todos)
+  }
 
   filteredTodos() {
     if (self.activeFilter == 'active') {
@@ -68,26 +69,18 @@
     }
   }
 
-  removeTodo(e) {
-    console.log('remove todo')
+  removeTodo(todo) {
     self.todos.some(function (t) {
-      if (e.item === t) {
+      if (todo === t) {
         self.todos.splice(self.todos.indexOf(t), 1)
       }
     })
-  }
-
-  toggleTodo(e) {
-    e.item.completed = !e.item.completed
-    self.update()
-    return true
   }
 
   toggleAll(e) {
     self.todos.forEach(function (t) {
       t.completed = e.target.checked
     })
-    self.update()
     return true
   }
 
@@ -109,42 +102,47 @@
     <div class="view">
       <input class="toggle" type="checkbox" checked={ todo.completed } onclick={ toggleTodo }>
       <label ondblclick={ editTodo }>{ todo.title }</label>
-      <button class="destroy" onclick={ parent.removeTodo }></button>
+      <button class="destroy" onclick={ removeTodo }></button>
     </div>
     <input name="todoeditbox" class="edit" type="text" onblur={ doneEdit } onkeyup={ editKeyUp }>
   </li>
   <script>
   var self = this
   self.todo = opts.data
+  self.parentview = opts.parentview
   self.editing = false
 
   toggleTodo(e) {
-    console.log(self.parent)
     self.todo.completed = !self.todo.completed
-    riot.update()
+    self.parentview.saveTodos()
     return true
   }
 
   editTodo(e) {
     self.editing = true
-    self.todoeditbox.focus()
     self.todoeditbox.value = self.todo.title
   }
 
+  removeTodo(e) {
+    self.parentview.removeTodo(self.todo)
+  }
+
   doneEdit(e) {
-    console.log('blur')
     self.editing = false
     self.todo.title = self.todoeditbox.value || self.todo.title
-    console.log('done ' + self.todo.title)
+    self.parentview.saveTodos()
   }
 
   editKeyUp(e) {
-    if (e.which == 13) {
-      self.editing = false
-    } else if (e.which == 27) {
-      self.todoeditbox.value = self.todo.title
+    if (e.which == 13) { // enter
       self.editing = false
     }
   }
+
+  self.on('update', function() {
+    if (self.editing) {
+      self.todoeditbox.focus()
+    }
+  })
   </script>
 </todoitem>
