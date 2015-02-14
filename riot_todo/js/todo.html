@@ -15,10 +15,9 @@
         <strong>{ remaining }</strong> { remaining > 1 ? 'items' : 'item' } left
       </span>
       <ul id="filters">
-        <!-- TODO: change to string after riot fixes the bug -->
-        <li><a class={ selected: activeFilter == all } href="#/all">All</a></li>
-        <li><a class={ selected: activeFilter == active } href="#/active">Active</a></li>
-        <li><a class={ selected: activeFilter == completed } href="#/completed">Completed</a></li>
+        <li><a class={ selected: activeFilter=='all' } href="#/all">All</a></li>
+        <li><a class={ selected: activeFilter=='active' } href="#/active">Active</a></li>
+        <li><a class={ selected: activeFilter=='completed' } href="#/completed">Completed</a></li>
       </ul>
       <button id="clear-completed" onclick={ removeCompleted } show={ todos.length > remaining }>
         Clear completed ({ todos.length - remaining })</button>
@@ -33,6 +32,10 @@
   <script>
   var self = this
   self.todos = opts.data || []
+
+  riot.route.exec(function(base, filter) {
+    self.activeFilter = filter || 'all'
+  })
 
   self.on('update', function() {
     self.remaining = self.todos.filter(function(t) { return !t.completed}).length
