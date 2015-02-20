@@ -12,7 +12,7 @@
     </section>
     <footer id="footer" show={ todos.length }>
       <span id="todo-count">
-        <strong>{ remaining }</strong> { remaining > 1 ? 'items' : 'item' } left
+        <strong>{ remaining }</strong> { remaining == 1 ? 'item' : 'items' } left
       </span>
       <ul id="filters">
         <li><a class={ selected: activeFilter=='all' } href="#/all">All</a></li>
