@@ -141,6 +141,9 @@
   editKeyUp(e) {
     if (e.which == 13) { // enter
       self.editing = false
+    } else if (e.which == 27) { // esc
+      self.editing = false
+      self.todoeditbox.value = self.todo.title
     }
   }
 
