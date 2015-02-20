@@ -89,7 +89,6 @@
     self.reversed[self.sortKey] = !self.reversed[self.sortKey]
   }
 
-  // TODO: orderby currently does not work correctly, DOM does not update
   orderedData(data) {
     if (!self.sortKey) {
       return data
@@ -100,9 +99,6 @@
       bv = b[self.sortKey]
       return av === bv ? 0 :
         av > bv ? order : -order
-    })
-    res.forEach(function(qq) {
-      console.log(qq)
     })
     return res
   }

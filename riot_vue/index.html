@@ -18,12 +18,12 @@
     <script src="tags/hackernews.html" type="riot/tag"></script>
     <script src="tags/todomvc.html" type="riot/tag"></script>
 
-    <script src="//cdn.jsdelivr.net/g/riot@2.0.9(riot.min.js+compiler.min.js)"></script>
+    <script src="//cdn.jsdelivr.net/g/riot@2.0.10(riot.min.js+compiler.min.js)"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="//cdn.firebase.com/js/client/1.1.2/firebase.js"></script>
 
     <script>
-    riot.mount('app', [
+    riot.mount('app', { examples: [
       {link:"#markdown", title:"Markdown Editor", vuelink:"http://vuejs.org/examples/index.html"},
       {link:"#githubcommits", title:"Github Commits", vuelink:"http://vuejs.org/examples/commits.html"},
       {link:"#firebase", title:"Firebase + Validation", vuelink:"http://vuejs.org/examples/firebase.html"},
@@ -33,7 +33,7 @@
       {link:"#imageslider", title:"Image Slider Component", vuelink:"http://vuejs.org/examples/image-slider.html"},
       {link:"#hackernews", title:"Hackernews Reader", vuelink:"http://vuejs.org/examples/hackernews.html"},
       {link:"#todomvc", title:"TodoMVC", vuelink:"http://vuejs.org/examples/todomvc.html"}
-    ])
+    ]})
     </script>
   </body>
 </html>

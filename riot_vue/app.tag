@@ -2,7 +2,7 @@
   <nav id="sidenavs">
     <h2>Examples</h2>
     <ul>
-      <li each={ opts }>
+      <li each={ opts.examples }>
         <a class={ current: parent.isCurrent(link) } href={ link }>{ title }</a>
       </li>
     </ul>
@@ -36,7 +36,7 @@
     if (oldElement) {
       oldElement.remove()
     }
-    exampleEle = document.createElement('example-content' )
+    exampleEle = document.createElement('example-content')
     exampleEle.id = 'example'
     document.getElementById('example-content').appendChild(exampleEle)
     riot.mountTo(document.getElementById('example'), example)
