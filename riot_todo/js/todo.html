@@ -103,7 +103,7 @@
 </todo>
 
 <todoitem>
-  <li class={ completed: todo.completed, editing: editing, todo: true }>
+  <li class="todo {completed: todo.completed, editing: editing}">
     <div class="view">
       <input class="toggle" type="checkbox" checked={ todo.completed } onclick={ toggleTodo }>
       <label ondblclick={ editTodo }>{ todo.title }</label>
