@@ -45,6 +45,7 @@
 
   saveTodos() {
     todoStorage.save(self.todos)
+    self.update()
   }
 
   filteredTodos() {
@@ -78,6 +79,7 @@
         self.todos.splice(self.todos.indexOf(t), 1)
       }
     })
+    self.update()
   }
 
   toggleAll(e) {
@@ -144,6 +146,7 @@
 
   self.on('update', function() {
     if (self.editing) {
+      self.parentview.update()
       self.todoeditbox.focus()
     }
   })
