@@ -134,8 +134,13 @@
 
   doneEdit(e) {
     self.editing = false
-    self.todo.title = self.todoeditbox.value || self.todo.title
-    self.parentview.saveTodos()
+    var enteredText = self.todoeditbox.value && self.todoeditbox.value.trim()
+    if (enteredText) {
+      self.todo.title = enteredText
+      self.parentview.saveTodos()
+    } else {
+      self.removeTodo()
+    }
   }
 
   editKeyUp(e) {
