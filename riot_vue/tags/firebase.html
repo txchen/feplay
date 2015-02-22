@@ -29,9 +29,9 @@
   </ul>
   <form id="form" onsubmit={ addUser }>
     <span>Name:</span>
-    <input name="nameInput" onkeyup="{ editName }">
+    <input name="nameInput" oninput="{ editName }">
     <span>Email:</span>
-    <input name="emailInput" onkeyup="{ editEmail }">
+    <input name="emailInput" oninput="{ editEmail }">
     <button disabled={ !userName || !userEmail || !validation.name || !validation.email }>Add User</button>
   </form>
   <ul class="errors">

@@ -39,8 +39,8 @@
         <button onclick={ parent.removeStat }>X</button>
       </div>
       <form id={ addstat } onsubmit={ addStat }>
-        <input name="newlabel" onkeyup={ editAdd }>
-        <button disabled={ !newlabelvalue }>Add a Stat</button>
+        <input name="newlabel" oninput={ editAdd }>
+        <button disabled={ !newlabel.value }>Add a Stat</button>
       </form>
     </div>
     <pre id="raw">{ JSON.stringify(stats, null, 2) }</pre>
