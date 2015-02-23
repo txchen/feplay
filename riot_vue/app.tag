@@ -3,21 +3,19 @@
     <h2>Examples</h2>
     <ul>
       <li each={ opts.examples }>
-        <a class={ current: parent.isCurrent(link) } href={ link }>{ title }</a>
+        <a class={ current: link == window.location.hash } href={ link }>{ title }</a>
       </li>
     </ul>
     <p><a href="https://github.com/txchen/feplay/tree/gh-pages/riot_vue" target="_blank">Source Code</a></p>
     <p>RiotJs Ver: { riotver }</p>
     <p><a href="http://vuejs.org/examples" target="_blank">Vuejs versions</a></p>
   </nav>
-  <div id="example-content">
-    <example-content id="example">
-    </example-content>
-  </div>
+  <div id="example"></div>
 
   <script>
   var self = this
   self.riotver = riot.version
+  self.mountedTag = null
 
   this.on('mount', function(){
     riot.route.exec(function(example) {
@@ -26,23 +24,12 @@
     })
   })
 
-  isCurrent(link) {
-    return link == window.location.hash
-  }
-
   loadExample(example) {
     console.log('loadExample ' + example)
-    var oldElement = document.getElementById('example')
-    if (oldElement) {
-      oldElement.remove()
+    if (self.mountedTag) {
+      self.mountedTag.unmount()
     }
-    exampleEle = document.createElement('example-content')
-    exampleEle.id = 'example'
-    document.getElementById('example-content').appendChild(exampleEle)
-    riot.mountTo(document.getElementById('example'), example)
-    // this will trigger unmount if element is removed from dom, important!
-    // otherwise it would cause memory leak
-    riot.update()
+    self.mountedTag = riot.mount('div#example', example)[0]
   }
 
   riot.route(function(example) {
