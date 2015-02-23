@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "riot": "^2.0.10"
+    "riot": "^2.0.11"
   },
   "devDependencies": {
     "http-server": "^0.7.4",
