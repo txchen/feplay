@@ -16,6 +16,7 @@
   var self = this
   self.riotver = riot.version
   self.mountedTag = null
+  self.loadedTags = {}
 
   this.on('mount', function(){
     riot.route.exec(function(example) {
@@ -29,7 +30,15 @@
     if (self.mountedTag) {
       self.mountedTag.unmount()
     }
-    self.mountedTag = riot.mount('div#example', example)[0]
+    if (!self.loadedTags[example]) {
+      riot.compile('tags/' + example + '.html', function() {
+        console.log(example + ' compiled')
+        self.loadedTags[example] = true
+        self.mountedTag = riot.mount('div#example', example)[0]
+      })
+    } else {
+      self.mountedTag = riot.mount('div#example', example)[0]
+    }
   }
 
   riot.route(function(example) {
