@@ -21,6 +21,6 @@
     var productStore = new ProductStore()
     RiotControl.addStore(cartStore)
     RiotControl.addStore(productStore)
-    riot.mount('*')
+    riot.compile(function() { riot.mount('*') })
     </script>
   </body>

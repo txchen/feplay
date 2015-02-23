@@ -11,7 +11,7 @@
     <script src="js/app.htm" type="riot/tag"></script>
 		<script src="node_modules/riot/riot+compiler.min.js"></script>
     <script>
-    riot.mount('*')
+    riot.compile(function() { riot.mount('*') })
     </script>
   </body>
 </html>
