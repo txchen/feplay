@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "dependencies": {
+    "riot": "^2.0.10"
+  },
+  "devDependencies": {
+    "http-server": "^0.7.4",
+    "live-reload": "^0.2.0"
+  },
+  "scripts": {
+    "serve": "http-server -p 5000 .",
+    "livereload": "live-reload --port 5001 ./",
+    "dev": "echo 'open http://localhost:5000' && npm run serve & npm run livereload"
+  }
+}
