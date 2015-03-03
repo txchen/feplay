@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "dependencies": {
+    "riot": "^2.0.12"
+  },
+  "devDependencies": {
+    "light-server": "^0.1.2"
+  },
+  "scripts": {
+    "dev": "light-server -s ."
+  }
+}
