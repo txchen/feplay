@@ -1,5 +1,15 @@
 <app>
-  <div>hello</div>
-  <script>
+  <button onclick={fivetimesdata}>*5 the world</button>
+  <ul>
+    <li each={data}>{v}</li>
+  </ul>
+  <script type="es6">
+  var self = this
+  self.data = [{v: 1}, {v: 2}, {v: 3}, {v: 4}]
+
+  // fivetimesdate() should become fivetimedata = function()
+  fivetimesdata = function(e) {
+    self.data.forEach(d => d.v *= 5)
+  }
   </script>
 </app>
