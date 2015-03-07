@@ -2,6 +2,7 @@
   "private": true,
   "devDependencies": {
     "babel": "^4.6.5",
+    "babelify": "^5.0.4",
     "browserify": "^9.0.3",
     "light-server": "^0.1.2",
     "minifyify": "^6.3.1",
@@ -9,7 +10,9 @@
     "riotify": "0.0.9"
   },
   "scripts": {
-    "build": "browserify -t [riotify --ext html] -d js/index.js -p [minifyify --compressPath . --map bundle.js.map --output build/bundle.js.map] -o build/bundle.js",
-    "dev": "light-server -s . -w 'js/**' -c 'npm run build'"
+    "build:vendor" : "browserify -r riot -d -p [minifyify --compressPath . --map vendor.js.map --output build/vendor.js.map] -o build/vendor.js",
+    "build:app" : "browserify -d -x riot -t babelify -t [riotify --ext html] js/index.js -p [minifyify --compressPath . --map app.js.map --output build/app.js.map] -o build/app.js",
+    "build": "npm run build:vendor && npm run build:app",
+    "dev": "light-server -s . -w 'js/**' -c 'npm run build:app'"
   }
 }
