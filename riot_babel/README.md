@@ -2,6 +2,7 @@
 
 This tiny example shows how to write ES6 with Riotjs, and use browserify to build the bundled target js to run in the browser environment.
 
+Online demo: http://txchen.github.io/feplay/riot_babel/
 
 ### To write ES6 in tag script
 
