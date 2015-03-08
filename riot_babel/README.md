@@ -28,7 +28,7 @@ buttonHandler(e) {
 }
 
 // Change to this
-this.buttonHandler = function(e) {
+this.buttonHandler = (e) => {
   // code
 }
 ```
@@ -46,10 +46,8 @@ ES6's template string cannot work in Riot's expression, but you can wrap it with
   <div>{ summary() }</div>
   <script type="es6">
   this.data = [{v: 1}, {v: 2}, {v: 3}, {v: 4}]
-  this.summary = function() {
-    return `there are ${this.data.length} elements,
+  this.summary = () => `there are ${this.data.length} elements,
 sum = ${this.data.map(d => d.v).reduce((a, b) => a + b)}`
-  }
   </script>
 </my-tag>
 ```
@@ -107,13 +105,13 @@ require("babel/polyfill")
 Now you can use it:
 
 ```js
-sleepFunc = function(ms) {
-  return function(callback){
+sleepFunc = (ms) => {
+  return (callback) => {
     setTimeout(callback, ms)
   }
 }
 
-this.sleepSomeTime = function() {
+this.sleepSomeTime = () => {
   co(function* (){
     self.sleep.innerHTML = "sleeping"
     yield sleepFunc(1000)

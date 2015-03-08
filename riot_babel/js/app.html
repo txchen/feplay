@@ -1,7 +1,7 @@
 <app>
   <button onclick={fivetimesdata}>*5 the world</button>
   <button onclick={removeLast}>Remove last</button>
-  <button onclick={sleepSomeTime}>Sleep some time</button>
+  <button disabled={insleeping} onclick={sleepSomeTime}>Sleep some time</button>
   <ul>
     <li each={data}>{v}</li>
   </ul>
@@ -13,37 +13,37 @@
   var self = this
   let co = require('co')
   self.data = [{v: 1}, {v: 2}, {v: 3}, {v: 4}]
+  self.insleeping = false
 
-  // fivetimesdate() should become fivetimedata = function()
-  this.fivetimesdata = function(e) {
+  this.fivetimesdata = (e) => {
     self.data.forEach(d => d.v *= 5)
   }
 
-  this.removeLast = function() {
+  this.removeLast = () => {
     self.data.splice(self.data.length - 1)
   }
 
-  sleepFunc = function(ms) {
-    return function(callback){
+  sleepFunc = (ms) => {
+    return (callback) => {
       setTimeout(callback, ms)
     }
   }
 
-  this.sleepSomeTime = function() {
+  this.sleepSomeTime = () => {
     co(function* (){
       self.sleep.innerHTML = "sleeping"
+      self.insleeping = true
       yield sleepFunc(1000)
       self.sleep.innerHTML = "done with sleep"
+      self.insleeping = false
+      self.update()
     })
   }
 
-  this.summary = function() {
-    return `there are ${self.data.length} elements,
+  this.summary = () => `there are ${self.data.length} elements,
 sum = ${self.data.map(d => d.v).reduce((a, b) => a + b)}`
-  }
 
-  this.max = function() {
-    return `max = ${helpers.max(self.data.map(d => d.v))}`
-  }
+  this.max = () => `max = ${helpers.max(self.data.map(d => d.v))}`
+
   </script>
 </app>
