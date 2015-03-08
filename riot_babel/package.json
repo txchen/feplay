@@ -4,15 +4,17 @@
     "babel": "^4.6.5",
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
+    "co": "^4.4.0",
     "light-server": "^0.1.2",
     "minifyify": "^6.3.1",
     "riot": "^2.0.12",
     "riotify": "0.0.9"
   },
   "scripts": {
-    "build:vendor" : "browserify -r riot -d -p [minifyify --compressPath . --map vendor.js.map --output build/vendor.js.map] -o build/vendor.js",
-    "build:app" : "browserify -d -x riot -t babelify -t [riotify --ext html] js/index.js -p [minifyify --compressPath . --map app.js.map --output build/app.js.map] -o build/app.js",
+    "build:vendor": "browserify -r babel/polyfill -r riot -r co -d -p [minifyify --compressPath . --map vendor.js.map --output build/vendor.js.map] -o build/vendor.js",
+    "build:app": "browserify -x babel/polyfill -x riot -x co -t babelify -t [riotify --ext html] js/index.js -o build/app.js",
     "build": "npm run build:vendor && npm run build:app",
+    "build:dist": "npm run build:vendor && npm run build:app -- -d -p [minifyify --compressPath . --map app.js.map --output build/app.js.map]",
     "dev": "light-server -s . -w 'js/**' -c 'npm run build:app'"
   }
 }
