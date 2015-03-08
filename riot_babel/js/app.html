@@ -38,7 +38,8 @@
   }
 
   this.summary = function() {
-    return `there are ${self.data.length} elements, sum = ${self.data.map(d => d.v).reduce((a, b) => a + b)}`
+    return `there are ${self.data.length} elements,
+sum = ${self.data.map(d => d.v).reduce((a, b) => a + b)}`
   }
 
   this.max = function() {
