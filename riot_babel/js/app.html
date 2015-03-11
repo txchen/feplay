@@ -2,12 +2,22 @@
   <button onclick={fivetimesdata}>*5 the world</button>
   <button onclick={removeLast}>Remove last</button>
   <button disabled={insleeping} onclick={sleepSomeTime}>Sleep some time</button>
+  <button onclick={showDialog}>Show dialog</button>
   <ul>
     <li each={data}>{v}</li>
   </ul>
   <div>{ summary() }</div>
   <div>{ max() }</div>
   <div name="sleep"></div>
+
+  <div show={dialogShowing} onclick={closeDialog} style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 999; background-color: rgba(0,0,0,.2);">
+    <div onclick={clickDialog} style="width: 500px; margin: 200px auto; background-color: white ">
+      <p>p1</p>
+      <p>p2</p>
+      <p>p3</p>
+      <button onclick={submitDialog}>submit</button>
+    </div>
+  </div>
 
   <script type="es6">
   let self = this
@@ -21,6 +31,23 @@
 
   this.removeLast = () => {
     self.data.splice(self.data.length - 1)
+  }
+
+  this.showDialog = () => {
+    self.dialogShowing = true;
+  }
+
+  this.clickDialog = e => {
+    e.stopPropagation()
+  }
+
+  this.submitDialog = () => {
+    console.log('submit dialog')
+    self.dialogShowing = false
+  }
+
+  this.closeDialog = () => {
+    self.dialogShowing = false
   }
 
   sleepFunc = (ms) => {
