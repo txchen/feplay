@@ -1,4 +1,63 @@
 <app>
+  <style scoped>
+  .md-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    max-width: 630px;
+    min-width: 320px;
+    height: auto;
+    z-index: 2000;
+    visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .md-show {
+    visibility: visible;
+  }
+
+  .md-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    opacity: 0;
+    background: rgba(143,27,15,0.8);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .md-effect-1 .md-content {
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .md-show.md-effect-1 .md-content {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .md-show ~ .md-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  </style>
+
   <button onclick={fivetimesdata}>*5 the world</button>
   <button onclick={removeLast}>Remove last</button>
   <button disabled={insleeping} onclick={sleepSomeTime}>Sleep some time</button>
@@ -10,14 +69,22 @@
   <div>{ max() }</div>
   <div name="sleep"></div>
 
-  <div show={dialogShowing} onclick={closeDialog} style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 999; background-color: rgba(0,0,0,.2);">
-    <div onclick={clickDialog} style="width: 500px; margin: 200px auto; background-color: white ">
-      <p>p1</p>
-      <p>p2</p>
-      <p>p3</p>
-      <button onclick={submitDialog}>submit</button>
+  <!-- http://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/ -->
+  <div class="md-modal md-effect-1 {md-show: dialogShowing}">
+    <div class="md-content">
+      <h3>Modal Dialog</h3>
+      <div>
+        <p>This is a modal window. You can do the following things with it:</p>
+        <ul>
+          <li><strong>Read:</strong> Modal windows will probably tell you something important so don't forget to read what it says.</li>
+          <li><strong>Look:</strong> modal windows enjoy a certain kind of attention; just look at it and appreciate its presence.</li>
+          <li><strong>Close:</strong> click on the button below to close the modal.</li>
+        </ul>
+        <button class="md-close" onclick={submitDialog}>Close me!</button>
+      </div>
     </div>
   </div>
+  <div class="md-overlay" onclick={closeDialog}></div>
 
   <script type="es6">
   let self = this
@@ -35,10 +102,6 @@
 
   this.showDialog = () => {
     self.dialogShowing = true;
-  }
-
-  this.clickDialog = e => {
-    e.stopPropagation()
   }
 
   this.submitDialog = () => {
