@@ -70,8 +70,7 @@ Firstly, build the vendor bundle, use `-r` option to tell browserify our depende
 
 ```bash
 browserify -r babel/polyfill -r riot -r co -d \
-  -p [minifyify --compressPath . \
-  --map vendor.js.map --output build/vendor.js.map] \
+  -p [minifyify --map vendor.js.map --output build/vendor.js.map] \
   -o build/vendor.js
 ```
 
@@ -85,7 +84,7 @@ browserify -x babel/polyfill -x riot -x co \
   js/index.js -o build/app.js
 ```
 
-In this example, `js/index.js` is our entry, and we use .html as Riot's tag file extention. You can add `-d -p [minifyify --compressPath . --map app.js.map --output build/app.js.map]` to enable minify and sourcemap generation.
+In this example, `js/index.js` is our entry, and we use .html as Riot's tag file extention. You can add `-d -p [minifyify --map app.js.map --output build/app.js.map]` to enable minify and sourcemap generation.
 
 That's it, now you will have vendor.js and app.js, include them in your html and it's done. My package.json is using a tool to monitor the source code change and auto trigger build and reload browser, should be very useful during development. Of course, you can use gulp or grunt to do the same.
 
