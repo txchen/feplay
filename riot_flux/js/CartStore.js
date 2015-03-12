@@ -22,4 +22,6 @@ function CartStore() {
     self.productsInCart = {}
     self.trigger('se_cart_changed', self.productsInCart)
   })
+
+  if (!(this instanceof CartStore)) return new CartStore()
 }

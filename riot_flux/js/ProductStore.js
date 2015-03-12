@@ -24,4 +24,6 @@ function ProductStore() {
     // here it can query server in real scenario
     self.trigger('se_products_changed', self.products)
   })
+
+  if (!(this instanceof ProductStore)) return new ProductStore()
 }

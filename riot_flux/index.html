@@ -17,8 +17,8 @@
     <script src="js/RiotControl.js"></script>
 
     <script>
-    var cartStore = new CartStore()
-    var productStore = new ProductStore()
+    var cartStore = CartStore()
+    var productStore = ProductStore()
     RiotControl.addStore(cartStore)
     RiotControl.addStore(productStore)
     riot.compile(function() { riot.mount('*') })
