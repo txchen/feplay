@@ -1,4 +1,6 @@
 function CartStore() {
+  if (!(this instanceof CartStore)) return new CartStore()
+
   riot.observable(this)
 
   var self = this
@@ -22,6 +24,4 @@ function CartStore() {
     self.productsInCart = {}
     self.trigger('se_cart_changed', self.productsInCart)
   })
-
-  if (!(this instanceof CartStore)) return new CartStore()
 }
