@@ -60,7 +60,7 @@
 
   <button onclick={fivetimesdata}>*5 the world</button>
   <button onclick={removeLast}>Remove last</button>
-  <button disabled={insleeping} onclick={sleepSomeTime}>Sleep some time</button>
+  <button disabled={insleeping} onclick={sleepSomeTime}>ES6+co Sleep some time</button>
   <button onclick={showDialog}>Show dialog</button>
   <ul>
     <li each={data}>{v}</li>
@@ -114,8 +114,17 @@
   }
 
   sleepFunc = (ms) => {
-    return (callback) => {
-      setTimeout(callback, ms)
+    return cb => { // return a thunk
+      setTimeout(function() {
+        cb(null, ms) // null means error
+      }, ms)
+    }
+  }
+
+  fakeFetch = () => {
+    return function* () {
+      yield sleepFunc(1000)
+      return Promise.resolve("es6")
     }
   }
 
@@ -123,8 +132,10 @@
     co(function* (){
       self.sleep.innerHTML = "sleeping"
       self.insleeping = true
-      yield sleepFunc(1000)
-      self.sleep.innerHTML = "done with sleep"
+      let sleptTime = yield sleepFunc(1000)
+      self.sleep.innerHTML = "slept for " + sleptTime + "ms, now fetch something"
+      let result = yield fakeFetch()
+      self.sleep.innerHTML = "got: " + result
       self.insleeping = false
       self.update()
     })
@@ -133,7 +144,7 @@
   this.summary = () => `there are ${self.data.length} elements,
 sum = ${self.data.map(d => d.v).reduce((a, b) => a + b)}`
 
-  this.max = () => `max = ${helpers.max(self.data.map(d => d.v))}`
+  this.max = () => `max = ${window.helpers.max(self.data.map(d => d.v))}`
 
   </script>
 </app>
