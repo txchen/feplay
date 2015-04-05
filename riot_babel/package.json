@@ -1,13 +1,13 @@
 {
   "private": true,
   "devDependencies": {
-    "babel": "^5.0.8",
-    "babelify": "^5.0.4",
-    "browserify": "^9.0.3",
-    "co": "^4.4.0",
+    "babel": "^4.7.16",
+    "babelify": "^5.0.5",
+    "browserify": "^9.0.7",
+    "co": "^4.5.1",
     "light-server": "^0.1.2",
-    "minifyify": "^6.3.1",
-    "riot": "^2.0.12",
+    "minifyify": "^6.4.0",
+    "riot": "^2.0.13",
     "riotify": "0.0.9"
   },
   "scripts": {
