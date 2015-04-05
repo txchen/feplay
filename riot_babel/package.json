@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "babel": "^4.6.5",
+    "babel": "^5.0.8",
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
     "co": "^4.4.0",

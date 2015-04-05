@@ -61,6 +61,7 @@
   <button onclick={fivetimesdata}>*5 the world</button>
   <button onclick={removeLast}>Remove last</button>
   <button disabled={insleeping} onclick={sleepSomeTime}>ES6+co Sleep some time</button>
+  <button disabled={insleeping} onclick={sleepES7}>sleepES7</button>
   <button onclick={showDialog}>Show dialog</button>
   <ul>
     <li each={data}>{v}</li>
@@ -140,6 +141,21 @@
       self.update()
     })
   }
+
+  // asyncSleep = async (ms) => {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => resolve(), ms)
+  //   })
+  // }
+  //
+  // this.fetchES7 = async () => {
+  //   self.sleep.innerHTML = "sleeping"
+  //   self.insleeping = true
+  //   await asyncSleep(1000)
+  //   self.sleep.innerHTML = "sleep finished"
+  //   self.insleeping = false
+  //   self.update()
+  // }
 
   this.summary = () => `there are ${self.data.length} elements,
 sum = ${self.data.map(d => d.v).reduce((a, b) => a + b)}`
