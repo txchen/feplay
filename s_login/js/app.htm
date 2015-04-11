@@ -1,7 +1,31 @@
 <app>
-  <div>Login test</div>
-  <ghlogin></ghlogin>
-  <scirpt>
+  <section>
+    <header><nav>Login with google account</nav></header>
+    <article>
+      <div if={ghaccount}>Hello: { gaccount } <button onclick={logout}>Logout</button></div>
+      <a href="https://github.com/login/oauth/authorize?client_id=eecaf638024ac4a60b2c"><button>Login</button></a>
+      <ul>
+        <li each={}></li>
+      </ul>
+    </article>
+  </section>
 
+  <script>
+  var self = this
+  var G_ACCESS_TOKEN_KEY = 'goog_at'
+  var G_USER_NAME_KEY = 'goog_user'
+
+  self.on('mount', function() {
+    self.gaccount = localStorage.getItem(G_ACCESS_TOKEN_KEY)
+    if (!localStorage.getItem(G_ACCESS_TOKEN_KEY)) {
+      console.log('no gh_at')
+    }
+  })
+
+  logout() {
+    localStorage.removeItem(G_ACCESS_TOKEN_KEY)
+    localStorage.removeItem(G_USER_NAME_KEY)
+    self.ghaccount = ''
+  }
   </script>
 </app>
