@@ -18,45 +18,43 @@
     </footer>
   </section>
 
-  <script>
-  var self = this
-  self.currentView = null
+  <script type="es6">
+  import './view/posts-view.html'
+  import './view/categories-view.html'
+  import './view/detail-view.html'
 
-  resetData() {
+  this._currentView = null
+
+  this.resetData = () => {
     riot.control.trigger('ve_reset_data')
   }
 
-  loadView(viewName, id) {
-    if (self.currentView) {
+  loadView = (viewName, id) => {
+    if (this._currentView) {
       // TODO: riot 2.0.15 will support this
-      self.currentView.unmount(true)
+      this._currentView.unmount(true)
     }
-    self.currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
+    this._currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
   }
 
-  studyRoute(view, id) {
+  studyRoute = (view, id) => {
     switch(view) {
-    case 'posts':
-      require('./view/posts-view.html')
-      self.loadView('posts-view')
-      break
     case 'categories':
-      require('./view/categories-view.html')
-      self.loadView('categories-view')
+      loadView('categories-view')
       break
     case 'detail':
-      require('./view/detail-view.html')
-      self.loadView('detail-view', id)
+      loadView('detail-view', id)
       break
+    case 'posts':
     default:
-      riot.route('posts')
+      loadView('posts-view')
     }
   }
 
-  riot.route(self.studyRoute)
+  riot.route(studyRoute)
 
-  this.on('mount', function() {
-    riot.route.exec(self.studyRoute)
+  this.on('mount', () => {
+    riot.route.exec(studyRoute)
   })
   </script>
 </app>

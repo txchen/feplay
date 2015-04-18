@@ -12,5 +12,5 @@ _RiotControlApi.forEach(api => {
   }
 })
 
-// since riot can be accessible from window, merge the control into the riot object
+// since riot is auto loaded by ProvidePlugin, merge the control into the riot object
 riot.control = RiotControl
