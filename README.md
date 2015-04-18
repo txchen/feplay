@@ -7,3 +7,4 @@ This repository contains small examples I made during my javascript frameworks/l
 * riot_todo - implement todomvc using riotjs
 * riot_vue - implement vuejs' examples using riotjs
 * riot_babel - use babel and riotjs to build web app
+* riot_webpack - use webpack, ES6, riot and riotcontrol to build app
