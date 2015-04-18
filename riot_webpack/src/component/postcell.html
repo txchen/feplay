@@ -1,0 +1,14 @@
+<postcell>
+  <div>
+    <span>Id: {opts.data.postId}</span>
+    <span>Title: <a href="#detail/{opts.data.postId}">{opts.data.title}</a></span>
+    <span>{opts.data.likes} Likes</span>
+    <button onclick={likePost}>Like</button>
+  </div>
+
+  <script>
+  likePost() {
+    riot.control.trigger('ve_like_post', opts.data.postId)
+  }
+  </script>
+</postcell>

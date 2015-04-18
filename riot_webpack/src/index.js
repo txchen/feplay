@@ -1,8 +1,9 @@
-require('./css/tacit.min.css')
-require('./app.html')
-riot.mount('app')
+import './css/tacit.min.css'
+import './RiotControl.js'
 
 import BlogStore from './blogstore.js'
+let blogstore = new BlogStore()
+riot.control.addStore(blogstore)
 
-let store = new BlogStore()
-console.log(store.getPost(4))
+import './app.html'
+riot.mount('app')

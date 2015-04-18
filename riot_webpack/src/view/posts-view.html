@@ -1,0 +1,18 @@
+<posts-view>
+  <postcell each={_posts} data={this}></postcell>
+
+  <script>
+  require('../component/postcell.html')
+  var self = this
+  self._posts = []
+
+  self.on('mount', function() {
+    riot.control.trigger('ve_postsview_init')
+  })
+
+  riot.control.on('se_posts_changed', function(posts) {
+    self._posts = posts
+    self.update()
+  })
+  </script>
+</posts-view>

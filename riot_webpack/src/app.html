@@ -1,4 +1,62 @@
 <app>
-  <div>test riotjs12!</div>
+  <section>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#posts">Posts</a></li>
+          <li><a href="#categories">Categories</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <div id="mainview"></div>
+    </article>
+    <footer>
+      <nav>
+        <a onclick={resetData}>Reset Data</a>
+      </nav>
+    </footer>
+  </section>
 
+  <script>
+  var self = this
+  self.currentView = null
+
+  resetData() {
+    riot.control.trigger('ve_reset_data')
+  }
+
+  loadView(viewName, id) {
+    if (self.currentView) {
+      // TODO: riot 2.0.15 will support this
+      self.currentView.unmount(true)
+    }
+    self.currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
+  }
+
+  studyRoute(view, id) {
+    switch(view) {
+    case 'posts':
+      require('./view/posts-view.html')
+      self.loadView('posts-view')
+      break
+    case 'categories':
+      require('./view/categories-view.html')
+      self.loadView('categories-view')
+      break
+    case 'detail':
+      require('./view/detail-view.html')
+      self.loadView('detail-view', id)
+      break
+    default:
+      riot.route('posts')
+    }
+  }
+
+  riot.route(self.studyRoute)
+
+  this.on('mount', function() {
+    riot.route.exec(self.studyRoute)
+  })
+  </script>
 </app>
