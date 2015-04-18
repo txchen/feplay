@@ -1,3 +1,26 @@
 <categories-view>
-  <div>categories-view</div>
+  <div each={category, posts in _postsInCategories}>
+    <h3>{category}</h3>
+    <postcell each={posts} data={this}></postcell>
+    <hr>
+  </div>
+
+  <script type="es6">
+  import '../component/postcell.html'
+
+  this._postsInCategories = {}
+
+  this.on('mount', () => {
+    riot.control.trigger('ve_load_posts')
+  })
+
+  riot.control.on('se_posts_changed', posts => {
+    this._postsInCategories = posts.reduce((map, post) => {
+      map[post.category] = map[post.category] || []
+      map[post.category].push(post)
+      return map
+    }, {})
+    this.update()
+  })
+  </script>
 </categories-view>

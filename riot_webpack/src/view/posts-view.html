@@ -6,8 +6,8 @@
 
   this._posts = []
 
-  this.on('mount', function() {
-    riot.control.trigger('ve_postsview_init')
+  this.on('mount', () => {
+    riot.control.trigger('ve_load_posts')
   })
 
   riot.control.on('se_posts_changed', posts => {

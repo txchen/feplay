@@ -7,7 +7,7 @@ function BlogStore() {
   let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
   this._posts = (json && JSON.parse(json)) || []
 
-  this.on('ve_postsview_init', () => {
+  this.on('ve_load_posts', () => {
     this.trigger('se_posts_changed', this._posts)
   })
 
@@ -24,6 +24,10 @@ function BlogStore() {
     })
     saveToStorage()
     this.trigger('se_posts_changed', this._posts)
+  })
+
+  this.on('ve_detailview_init', id => {
+    this.trigger('se_viewing_post_changed', this._posts.filter(p => p.postId == id)[0], this._posts.length)
   })
 
   let initData = () => {
