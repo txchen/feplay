@@ -8,19 +8,20 @@ module.exports = {
         publicPath: '/dist/',
         filename: 'bundle.js'
     },
+    module: {
+        loaders: [
+            { test: /\.css$/, include: /src/, loader: 'style!css' },
+            { test: /\.html$/, include: /src/, loader: 'riotjs' },
+            { test: /\.js$/, include: /src/, loader: 'babel', query: {modules: 'common'} }
+        ]
+    },
     plugins: [
       new webpack.ProvidePlugin({
         riot: 'riot'
       })
     ],
-    module: {
-        loaders: [
-            { test: /\.css$/, loader: 'style!css' },
-            { test: /\.html$/, loader: 'riotjs-loader' }
-        ]
-    },
     devServer: {
         port: 5555
     },
-    devtool: "#inline-source-map"
+    devtool: "source-map"
 }

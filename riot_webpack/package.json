@@ -6,6 +6,9 @@
     "viewdist": "light-server -s . -p 7000"
   },
   "devDependencies": {
+    "babel": "^5.1.10",
+    "babel-core": "^5.1.10",
+    "babel-loader": "^5.0.0",
     "css-loader": "^0.10.1",
     "light-server": "^1.0.1",
     "riot": "^2.0.14",
