@@ -5,6 +5,9 @@ function BlogStore() {
   riot.observable(this)
 
   let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
+  if (!json) {
+    initData()
+  }
   this._posts = (json && JSON.parse(json)) || []
 
   this.on(riot.VE.LOAD_POSTS, () => {
