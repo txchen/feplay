@@ -10,7 +10,7 @@
     riot.control.trigger('ve_load_posts')
   })
 
-  riot.control.on('se_posts_changed', posts => {
+  riot.control.on(riot.SE.POSTS_CHANGED, posts => {
     this._posts = posts
     this.update()
   })

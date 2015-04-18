@@ -26,7 +26,7 @@
   this._currentView = null
 
   this.resetData = () => {
-    riot.control.trigger('ve_reset_data')
+    riot.control.trigger(riot.VE.RESET_DATA)
   }
 
   loadView = (viewName, id) => {

@@ -8,7 +8,7 @@
 
   <script type="es6">
   this.likePost = () => {
-    riot.control.trigger('ve_like_post', opts.data.postId)
+    riot.control.trigger(riot.VE.LIKE_POST, opts.data.postId)
   }
   </script>
 </postcell>

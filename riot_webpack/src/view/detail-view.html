@@ -10,10 +10,10 @@
   this._total = 0
 
   this.on('mount', () => {
-    riot.control.trigger('ve_detailview_init', opts.data)
+    riot.control.trigger(riot.VE.DETAILVIEW_INIT, opts.data)
   })
 
-  riot.control.on('se_viewing_post_changed', (post, total) => {
+  riot.control.on(riot.SE.VIEWING_POST_CHANGED, (post, total) => {
     this._post = post
     this._total = total
     this.update()

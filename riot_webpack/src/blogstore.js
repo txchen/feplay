@@ -7,27 +7,27 @@ function BlogStore() {
   let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
   this._posts = (json && JSON.parse(json)) || []
 
-  this.on('ve_load_posts', () => {
-    this.trigger('se_posts_changed', this._posts)
+  this.on(riot.VE.LOAD_POSTS, () => {
+    this.trigger(riot.SE.POSTS_CHANGED, this._posts)
   })
 
-  this.on('ve_reset_data', () => {
+  this.on(riot.VE.RESET_DATA, () => {
     initData()
-    this.trigger('se_posts_changed', this._posts)
+    this.trigger(riot.SE.POSTS_CHANGED, this._posts)
   })
 
-  this.on('ve_like_post', id => {
+  this.on(riot.VE.LIKE_POST, id => {
     this._posts.forEach(p => {
       if (p.postId == id) {
         p.likes = p.likes + 1
       }
     })
     saveToStorage()
-    this.trigger('se_posts_changed', this._posts)
+    this.trigger(riot.SE.POSTS_CHANGED, this._posts)
   })
 
-  this.on('ve_detailview_init', id => {
-    this.trigger('se_viewing_post_changed', this._posts.filter(p => p.postId == id)[0], this._posts.length)
+  this.on(riot.VE.DETAILVIEW_INIT, id => {
+    this.trigger(riot.SE.VIEWING_POST_CHANGED, this._posts.filter(p => p.postId == id)[0], this._posts.length)
   })
 
   let initData = () => {
