@@ -1,7 +1,8 @@
 {
   "private": true,
   "dependencies": {
-    "riot": "^2.0.14"
+    "riot": "^2.0.14",
+    "whatwg-fetch": "^0.7.0"
   },
   "devDependencies": {
     "light-server": "^0.1.2"

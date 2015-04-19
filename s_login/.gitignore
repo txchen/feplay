@@ -2,6 +2,8 @@
 
 node_modules/.bin
 node_modules/light-server
+node_modules/whatwg-fetch/*
+!node_modules/whatwg-fetch/fetch.js
 node_modules/riot/*
 !node_modules/riot/riot.min.js
 !node_modules/riot/riot+compiler.min.js

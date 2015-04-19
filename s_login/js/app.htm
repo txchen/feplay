@@ -1,31 +1,122 @@
 <app>
   <section>
-    <header><nav>Login with google account</nav></header>
+    <header><nav>Your google tasks</nav></header>
     <article>
-      <div if={ghaccount}>Hello: { gaccount } <button onclick={logout}>Logout</button></div>
-      <a href="https://github.com/login/oauth/authorize?client_id=eecaf638024ac4a60b2c"><button>Login</button></a>
+      <div if={_userName}>Hello: { _userName } <button if={!errorMessage} onclick={logout}>Logout</button></div>
+      <a onclick={startLogin}><button>Login</button></a>
       <ul>
-        <li each={}></li>
+        <li each={listName, tasks in _tasks}>
+          <span>{listName}</span>
+          <ul>
+            <li each={t in tasks} if={t}>{ t }</li>
+          </ul>
+        </li>
       </ul>
+      <p if={errorMessage}>{errorMessage}</p>
     </article>
   </section>
 
   <script>
   var self = this
+  var client_id = '715725928985-e9d73eqqg7b5td6qki90euh8gjth8iks.apps.googleusercontent.com'
   var G_ACCESS_TOKEN_KEY = 'goog_at'
   var G_USER_NAME_KEY = 'goog_user'
+  self._tasks = {}
+  self._userName = ''
+  self._accessToken = ''
+  self._errorMessage = ''
 
   self.on('mount', function() {
-    self.gaccount = localStorage.getItem(G_ACCESS_TOKEN_KEY)
-    if (!localStorage.getItem(G_ACCESS_TOKEN_KEY)) {
-      console.log('no gh_at')
+    if (location.hash) { // returned by google server
+      var params = {}, queryString = location.hash.substring(1),
+          regex = /([^&=]+)=([^&]*)/g, m
+      while (m = regex.exec(queryString)) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+      }
+      if (params.access_token) {
+        fetch('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=' + params.access_token)
+          .then(function(response) {
+            return response.json()
+          }).then(function(json) {
+            console.log('access_token verified', json)
+            if (json.audience == client_id) {
+              self.saveToStorage(json, params.access_token)
+              self.fetchTaskLists()
+            } else {
+              throw new Error('access_token is invalid, client_id mismatch')
+            }
+          }).catch(function(ex) {
+            console.log('parsing failed', ex)
+            self._errorMessage = ex
+          })
+      }
+      location.hash = '' // clear hash
+    } else {
+      self.fetchTaskLists()
     }
   })
+
+  saveToStorage(json, accessToken) {
+    localStorage.setItem(G_USER_NAME_KEY, json.email )
+    localStorage.setItem(G_ACCESS_TOKEN_KEY, accessToken)
+  }
+
+  startLogin() {
+    var url = 'http://accounts.google.com/o/oauth2/auth?'
+    url += ('scope=' + encodeURIComponent('https://www.googleapis.com/auth/tasks.readonly email'))
+    url += ('&redirect_uri=' + encodeURIComponent(location.href.split('#')[0]))
+    url += '&response_type=token'
+    url += ('&client_id=' + client_id)
+    location.href = url
+  }
+
+  fetchTaskLists() {
+    self._userName = localStorage.getItem(G_USER_NAME_KEY)
+    self._accessToken = localStorage.getItem(G_ACCESS_TOKEN_KEY)
+    // get task list and then tasks
+    fetch('https://www.googleapis.com/tasks/v1/users/@me/lists', {
+      headers: {
+        'Authorization': 'Bearer ' + self._accessToken
+      }
+    }).then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      json.items.forEach(function(list) {
+        self.fetchTasks(list.id, list.title)
+      })
+    }).catch(function(ex) {
+      console.log('failed to get task list', ex)
+      self._errorMessage = ex
+    })
+    self.update()
+  }
+
+  fetchTasks(listId, listName) {
+    fetch('https://www.googleapis.com/tasks/v1/lists/' + listId + '/tasks ', {
+      headers: {
+        'Authorization': 'Bearer ' + self._accessToken
+      }
+    }).then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      self._tasks[listName] = []
+      json.items.forEach(function(t) {
+        self._tasks[listName].push(t.title)
+      })
+      self.update()
+    }).catch(function(ex) {
+      console.log('failed to get tasks', ex)
+      self._errorMessage = ex
+    })
+  }
 
   logout() {
     localStorage.removeItem(G_ACCESS_TOKEN_KEY)
     localStorage.removeItem(G_USER_NAME_KEY)
-    self.ghaccount = ''
+    self._userName = ''
+    self._accessToken = ''
+    self._tasks = {}
+    self.update()
   }
   </script>
 </app>
