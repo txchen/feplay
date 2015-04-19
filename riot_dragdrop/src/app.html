@@ -6,6 +6,8 @@
   <div id="hlist">
     <span each={_items}>{name} | </span>
   </div>
+  <hr>
+  <button onclick={moveLastToFirst}>Move Last To First</button>
 
   <script>
   var self = this
@@ -21,8 +23,17 @@
     onEnd: function (evt) {
       console.log('move from', evt.oldIndex, 'to', evt.newIndex)
       self._items.splice(evt.newIndex, 0, self._items.splice(evt.oldIndex, 1)[0])
-      riot.update()
+      var temp = self._items
+      self._items = []
+      self.update()
+      self._items = temp
+      self.update()
     }
+  }
+
+  moveLastToFirst() {
+    self._items.splice(0, 0, self._items.splice(self._items.length-1, 1)[0])
+    console.log(self._items)
   }
 
   self.on('mount', function() {
