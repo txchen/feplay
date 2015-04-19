@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "dist": "webpack -p -d"
+  },
+  "devDependencies": {
+    "dragula": "^1.4.1",
+    "riot": "^2.0.14",
+    "riotjs-loader": "^1.1.3",
+    "webpack": "^1.8.4",
+    "webpack-dev-server": "^1.8.0"
+  }
+}
