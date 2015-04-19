@@ -12,7 +12,7 @@
           </ul>
         </li>
       </ul>
-      <p if={errorMessage}>{errorMessage}</p>
+      <p if={_errorMessage}>{_errorMessage}</p>
     </article>
   </section>
 
@@ -79,14 +79,17 @@
         'Authorization': 'Bearer ' + self._accessToken
       }
     }).then(function(response) {
+      if (response.status < 200 || response.status > 300) {
+        throw new Error(response.statusText)
+      }
       return response.json()
     }).then(function(json) {
       json.items.forEach(function(list) {
         self.fetchTasks(list.id, list.title)
       })
     }).catch(function(ex) {
-      console.log('failed to get task list', ex)
-      self._errorMessage = ex
+      self._errorMessage = 'failed to get task list - ' + ex
+      self.update()
     })
     self.update()
   }
