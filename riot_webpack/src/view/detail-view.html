@@ -1,22 +1,24 @@
 <detail-view>
   <h2>{_post.title}</h2>
   <p>{_post.content}</p>
+  <p>{_post.likes} Likes</p>
   <a if={ opts.data > 1 } href="#detail/{ opts.data - 1 }">Previous Post</a> |
   <a if={ opts.data < _total } href="#detail/{ opts.data - -1 }">Next Post</a>
 
 
   <script type="es6">
-  this._post = null
-  this._total = 0
+  import stores from '../stores'
 
-  this.on('mount', () => {
-    riot.control.trigger(riot.VE.DETAILVIEW_INIT, opts.data)
+  riot.control.on(riot.SE.POSTS_CHANGED, posts => {
+    this.readData()
   })
 
-  riot.control.on(riot.SE.VIEWING_POST_CHANGED, (post, total) => {
-    this._post = post
-    this._total = total
+  this.readData = () => {
+    this._post = stores.blog.getPostById(opts.data)
+    this._total = stores.blog._posts.length
     this.update()
-  })
+  }
+
+  this.readData()
   </script>
 </detail-view>

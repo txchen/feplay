@@ -17,12 +17,10 @@ riot.control = RiotControl
 // store events
 riot.SE = {
   POSTS_CHANGED: 'se_posts_changed',
-  VIEWING_POST_CHANGED: 'se_viewing_post_changed',
 }
 // view events
 riot.VE = {
   RESET_DATA: 've_reset_data',
-  DETAILVIEW_INIT: 've_detailview_init',
   LIKE_POST: 've_like_post',
   LOAD_POSTS: 've_load_posts',
 }

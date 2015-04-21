@@ -1,8 +1,6 @@
 import './css/tacit.min.css'
 import './RiotControl.js'
-
-import BlogStore from './blogstore.js'
-riot.control.addStore(BlogStore())
+import './stores.js'
 
 import './app.html'
 riot.mount('app')

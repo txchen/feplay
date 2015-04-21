@@ -29,9 +29,9 @@ function BlogStore() {
     this.trigger(riot.SE.POSTS_CHANGED, this._posts)
   })
 
-  this.on(riot.VE.DETAILVIEW_INIT, id => {
-    this.trigger(riot.SE.VIEWING_POST_CHANGED, this._posts.filter(p => p.postId == id)[0], this._posts.length)
-  })
+  this.getPostById = id => {
+    return this._posts.filter(p => p.postId == id)[0]
+  }
 
   let initData = () => {
     let defaultPosts = [
@@ -51,4 +51,7 @@ function BlogStore() {
   }
 }
 
-export default BlogStore
+// register to riot control by myself
+let instance = BlogStore()
+riot.control.addStore(instance)
+export default instance
