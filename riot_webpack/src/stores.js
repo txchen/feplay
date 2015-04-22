@@ -1,4 +1,4 @@
-import blogStore from './blogstore'
+import blogStore from './store/blogstore'
 
 // register all the stores here
 const stores = {
