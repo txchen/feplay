@@ -31,7 +31,6 @@
 
   loadView = (viewName, id) => {
     if (this._currentView) {
-      // TODO: riot 2.0.15 will support this
       this._currentView.unmount(true)
     }
     this._currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
