@@ -4,6 +4,10 @@ This tiny example shows how to write ES6 with Riotjs, and use browserify to buil
 
 Online demo: http://txchen.github.io/feplay/riot_babel/
 
+### ---- A better choice, maybe ----
+
+riot-loader + webpack might be a better choice, here is another example for that: https://github.com/txchen/feplay/tree/gh-pages/riot_webpack
+
 ### To write ES6 in tag script
 
 The change is simple, just set the `type` to `es6` in the `script` elemnt:
