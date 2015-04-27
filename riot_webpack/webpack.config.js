@@ -2,7 +2,10 @@ var webpack = require('webpack')
 
 module.exports = {
     cache: true,
-    entry: './src/index.js',
+    entry: {
+      app: './src/index.js',
+      vendor: './src/vendor.js',
+    },
     output: {
         path: './dist/',
         publicPath: '/dist/',
@@ -18,7 +21,8 @@ module.exports = {
     plugins: [
       new webpack.ProvidePlugin({
         riot: 'riot'
-      })
+      }),
+      new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
     ],
     devServer: {
         port: 5555

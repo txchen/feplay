@@ -1,4 +1,3 @@
-import './css/tacit.min.css'
 import './RiotControl.js'
 import './stores.js'
 
