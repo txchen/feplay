@@ -1,8 +1,5 @@
-import blogStore from './store/blogstore'
+import blog from './store/blogstore'
 
-// register all the stores here
-const stores = {
-  blog: blogStore
-}
+const stores = { blog }
 
 export default stores

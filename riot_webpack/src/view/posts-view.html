@@ -2,12 +2,10 @@
   <postcell each={_posts} data={this}></postcell>
 
   <script type="es6">
-  import '../component/postcell.html'
-
   this._posts = []
 
   this.on('mount', () => {
-    riot.control.trigger('ve_load_posts')
+    riot.control.trigger(riot.VE.LOAD_POSTS)
   })
 
   riot.control.on(riot.SE.POSTS_CHANGED, posts => {

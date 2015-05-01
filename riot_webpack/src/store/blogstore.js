@@ -1,14 +1,22 @@
 const LOCALSTORAGE_KEY = 'riot-webpack-demo'
 
-function BlogStore() {
-  if (!(this instanceof BlogStore)) return new BlogStore()
-  riot.observable(this)
+class BlogStore {
+  constructor() {
+    riot.observable(this)
 
-  let saveToStorage = () => {
-    window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this._posts))
+    let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
+    if (!json) {
+      _initData()
+    } else {
+      this._posts = (json && JSON.parse(json)) || []
+    }
   }
 
-  let initData = () => {
+  getPostById(id) {
+    return this._posts.filter(p => p.postId == id)[0]
+  }
+
+  initData() {
     let defaultPosts = [
       {postId: 1, title: 'Best xbox games', content: 'Halo, GOW', category: 'collection', likes: 10},
       {postId: 2, title: 'Best ps games', content: 'Uncharted, The Last of US', category: 'collection', likes: 20},
@@ -18,41 +26,35 @@ function BlogStore() {
       {postId: 6, title: 'Review of portal', content: 'I don\'t blame you', category: 'review', likes: 40},
     ]
     this._posts = defaultPosts
-    saveToStorage()
+    this.saveToStorage()
   }
 
-  let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
-  if (!json) {
-    initData()
-  } else {
-    this._posts = (json && JSON.parse(json)) || []
-  }
-
-  this.on(riot.VE.LOAD_POSTS, () => {
-    this.trigger(riot.SE.POSTS_CHANGED, this._posts)
-  })
-
-  this.on(riot.VE.RESET_DATA, () => {
-    initData()
-    this.trigger(riot.SE.POSTS_CHANGED, this._posts)
-  })
-
-  this.on(riot.VE.LIKE_POST, id => {
-    this._posts.forEach(p => {
-      if (p.postId == id) {
-        p.likes = p.likes + 1
-      }
-    })
-    saveToStorage()
-    this.trigger(riot.SE.POSTS_CHANGED, this._posts)
-  })
-
-  this.getPostById = id => {
-    return this._posts.filter(p => p.postId == id)[0]
+  saveToStorage() {
+    window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(this._posts))
   }
 }
 
+let instance = new BlogStore()
+
+instance.on(riot.VE.LOAD_POSTS, () => {
+  instance.trigger(riot.SE.POSTS_CHANGED, instance._posts)
+})
+
+instance.on(riot.VE.RESET_DATA, () => {
+  instance.initData()
+  instance.trigger(riot.SE.POSTS_CHANGED, instance._posts)
+})
+
+instance.on(riot.VE.LIKE_POST, id => {
+  instance._posts.forEach(p => {
+    if (p.postId == id) {
+      p.likes = p.likes + 1
+    }
+  })
+  instance.saveToStorage()
+  instance.trigger(riot.SE.POSTS_CHANGED, instance._posts)
+})
+
 // register to riot control by myself
-let instance = BlogStore()
 riot.control.addStore(instance)
 export default instance

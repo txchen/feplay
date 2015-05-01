@@ -1,5 +1,5 @@
 import './RiotControl.js'
 import './stores.js'
+import './riotTags.js'
 
-import './app.html'
 riot.mount('app')
