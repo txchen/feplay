@@ -1,0 +1,19 @@
+<app>
+  <section>
+    <header><nav>Ramjet with riot, click 'a'</nav></header>
+    <article>
+      <div name='a' onclick={moveRamjet} style='background-color: red; font-size: 4em; padding: 1em;'>a</div>
+      <div name='b' style='background-color: yellow; font-size: 4em; padding: 1em;'>b</div>
+      <div name='c' style='background-color: green; font-size: 4em; padding: 1em;'>c</div>
+      <div name='d' style='background-color: black; font-size: 4em; padding: 1em;'>d</div>
+    </article>
+  </section>
+
+  <script>
+  moveRamjet() {
+    console.log('haha')
+    ramjet.transform(this.a, this.d, {easing: ramjet.easeInOut })
+    ramjet.hide(this.a)
+  }
+  </script>
+</app>

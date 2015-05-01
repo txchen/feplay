@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Play ramjet with riot</title>
+    <link rel="stylesheet" type="text/css" href="//yegor256.github.io/tacit/tacit.min.css"/>
+  </head>
+  <body>
+    <app></app>
+    <script src="node_modules/ramjet/dist/ramjet.min.js"></script>
+    <script src="js/app.htm" type="riot/tag"></script>
+    <script src="node_modules/riot/riot+compiler.min.js"></script>
+    <script>
+    riot.compile(function() { riot.mount('*') })
+    </script>
+  </body>
+</html>
