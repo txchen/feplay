@@ -1,19 +1,31 @@
 <app>
   <section>
-    <header><nav>Ramjet with riot, click 'a'</nav></header>
+    <header><nav>Ramjet with riot, click 'a' or 'c'</nav></header>
     <article>
       <div name='a' onclick={moveRamjet} style='background-color: red; font-size: 4em; padding: 1em;'>a</div>
       <div name='b' style='background-color: yellow; font-size: 4em; padding: 1em;'>b</div>
-      <div name='c' style='background-color: green; font-size: 4em; padding: 1em;'>c</div>
-      <div name='d' style='background-color: black; font-size: 4em; padding: 1em;'>d</div>
+      <div name='c' onclick={moveRamjet} style='background-color: green; font-size: 4em; padding: 1em; opacity: 0'>c</div>
     </article>
   </section>
 
   <script>
+  var self = this
+  self.light = 'red'
+
   moveRamjet() {
-    console.log('haha')
-    ramjet.transform(this.a, this.d, {easing: ramjet.easeInOut })
-    ramjet.hide(this.a)
+    if (self.light == 'red') {
+      ramjet.hide(self.a)
+      ramjet.transform(self.a, self.c, {easing: ramjet.easeInOut, done: function() {
+        self.light = 'green'
+        ramjet.show(self.c)
+      }})
+    } else {
+      ramjet.hide(self.c)
+      ramjet.transform(self.c, self.a, {easing: ramjet.easeInOut, done: function() {
+        self.light = 'red'
+        ramjet.show(self.a)
+      }})
+    }
   }
   </script>
 </app>
