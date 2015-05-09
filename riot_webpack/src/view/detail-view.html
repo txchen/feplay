@@ -1,17 +1,28 @@
 <detail-view>
   <h2>{_post.title}</h2>
   <p>{_post.content}</p>
-  <p>{_post.likes} Likes</p>
+  <p ondblclick={countWord}>{_post.likes} Likes</p>
+  <p if={ _wordsCount }>{_wordsCount} words</p>
   <a if={ opts.data > 1 } href="#detail/{ opts.data - 1 }">Previous Post</a> |
   <a if={ opts.data < _total } href="#detail/{ opts.data - -1 }">Next Post</a>
 
 
-  <script type="es6">
-  import stores from '../stores'
+  <script>
+  let stores = require('../stores')
 
   riot.control.on(riot.SE.POSTS_CHANGED, posts => {
     this.readData()
   })
+
+  function sleep(ms = 0) {
+    return new Promise(r => setTimeout(r, ms))
+  }
+
+  this.countWord = async () => {
+    await sleep(1000)
+    this._wordsCount = this._post.content.split(' ').length
+    this.update() // after await, need to manual trigger
+  }
 
   this.readData = () => {
     this._post = stores.blog.getPostById(opts.data)
