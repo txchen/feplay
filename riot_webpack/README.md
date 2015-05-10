@@ -10,6 +10,12 @@ Features:
 * Use route, view and component to structure the app
 * Use RiotControl to enable the flux-like app architecture
 
+### To use Async/Await with babel
+
+Async await is ES7 feature, but we can use it today with babel. Checkout `asyncawait` branch to see how to use it with riotjs.
+
+To enable async/await, about 60KB script size needs to be added.
+
 ### To write ES6 in tag script
 
 The change is simple, just set the `type` to `es6` in the `script` element:
