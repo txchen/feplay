@@ -6,7 +6,7 @@ class BlogStore {
 
     let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
     if (!json) {
-      _initData()
+      this.initData()
     } else {
       this._posts = (json && JSON.parse(json)) || []
     }
