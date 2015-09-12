@@ -1,20 +1,20 @@
 {
   "private": true,
   "devDependencies": {
-    "babel": "^4.7.16",
-    "babelify": "^5.0.5",
-    "browserify": "^9.0.7",
-    "co": "^4.5.1",
-    "light-server": "^0.1.2",
-    "minifyify": "^6.4.0",
-    "riot": "^2.0.13",
-    "riotify": "0.0.9"
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "co": "^4.6.0",
+    "light-server": "^1.0.6",
+    "minifyify": "^7.0.6",
+    "riot": "^2.2.4",
+    "riotify": "0.1.2"
   },
   "scripts": {
     "build:vendor": "browserify -r babel/polyfill -r riot -r co -d -p [minifyify --map vendor.js.map --output build/vendor.js.map] -o build/vendor.js",
     "build:app": "browserify -x babel/polyfill -x riot -x co -t babelify -t [riotify --ext html] js/index.js -o build/app.js",
     "build": "npm run build:vendor && npm run build:app",
     "build:dist": "npm run build:vendor && npm run build:app -- -d -p [minifyify --map app.js.map --output build/app.js.map]",
-    "dev": "light-server -s . -w 'js/**' -c 'npm run build:app'"
+    "dev": "light-server -s . -w 'js/** # npm run build:app'"
   }
 }
