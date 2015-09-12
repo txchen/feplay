@@ -5,11 +5,11 @@
     "dist": "webpack -p -d"
   },
   "devDependencies": {
-    "dragula": "^1.6.1",
+    "dragula": "^3.1.0",
     "node-libs-browser": "^0.5.2",
-    "riot": "^2.2.0",
+    "riot": "^2.2.4",
     "riotjs-loader": "^1.1.3",
-    "webpack": "^1.10.0",
-    "webpack-dev-server": "^1.10.0"
+    "webpack": "^1.12.1",
+    "webpack-dev-server": "^1.10.1"
   }
 }
