@@ -1,11 +1,11 @@
 {
   "private": true,
   "dependencies": {
-    "riot": "^2.0.14",
-    "whatwg-fetch": "^0.7.0"
+    "riot": "^2.2.4",
+    "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
-    "light-server": "^0.1.2"
+    "light-server": "^1.0.6"
   },
   "scripts": {
     "dev": "light-server -s . -w 'js/**'"
