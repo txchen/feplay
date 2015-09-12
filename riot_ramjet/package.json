@@ -1,11 +1,11 @@
 {
   "private": true,
   "dependencies": {
-    "ramjet": "^0.4.4",
-    "riot": "^2.0.15"
+    "ramjet": "^0.4.5",
+    "riot": "^2.2.4"
   },
   "devDependencies": {
-    "light-server": "^1.0.2"
+    "light-server": "^1.0.6"
   },
   "scripts": {
     "dev": "light-server -s . -w 'js/**'"
