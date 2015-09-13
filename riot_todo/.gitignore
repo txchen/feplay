@@ -11,3 +11,5 @@ node_modules/.bin
 node_modules/riot/*
 !node_modules/riot/riot.min.js
 !node_modules/riot/riot+compiler.min.js
+
+node_modules/light-server
