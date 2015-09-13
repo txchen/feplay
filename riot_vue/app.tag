@@ -28,7 +28,7 @@
   loadExample(example) {
     console.log('loadExample ' + example)
     if (self.mountedTag) {
-      self.mountedTag.unmount()
+      self.mountedTag.unmount(true)
     }
     if (!self.loadedTags[example]) {
       riot.compile('tags/' + example + '.html', function() {

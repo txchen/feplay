@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+    "light-server": "^1.0.6"
+  },
+  "scripts": {
+    "dev": "light-server -s . -w 'js/**'"
+  }
+}
