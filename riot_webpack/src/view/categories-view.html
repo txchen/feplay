@@ -6,13 +6,15 @@
   </div>
 
   <script type="es6">
+  this.mixin('controlMixin')
   this._postsInCategories = {}
 
   this.on('mount', () => {
     riot.control.trigger(riot.VE.LOAD_POSTS)
   })
 
-  riot.control.on(riot.SE.POSTS_CHANGED, posts => {
+  this.onControl(riot.SE.POSTS_CHANGED, posts => {
+    console.log('on posts_changed')
     this._postsInCategories = posts.reduce((map, post) => {
       map[post.category] = map[post.category] || []
       map[post.category].push(post)

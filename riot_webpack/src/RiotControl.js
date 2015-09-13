@@ -24,3 +24,11 @@ riot.VE = {
   LIKE_POST: 've_like_post',
   LOAD_POSTS: 've_load_posts',
 }
+
+// register global tag mixin for using RiotControl
+riot.mixin('controlMixin', {
+  onControl(signal, func) {
+    riot.control.on(signal, func)
+    this.on('unmount', () => riot.control.off(signal, func))
+  }
+})
