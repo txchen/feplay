@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb/base",
+  "plugins": ["riot"],
+  "rules" : {
+    "semi": [2, "never"],
+    "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_"}],
+  },
+  "globals": {
+    "riot": true,
+    "opts": true,
+  },
+}

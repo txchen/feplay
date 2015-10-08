@@ -1,13 +1,13 @@
-let _RiotControlApi = ['on','one','off','trigger']
-let RiotControl = {
+const _RiotControlApi = ['on', 'one', 'off', 'trigger']
+const RiotControl = {
   _stores: [],
   addStore(store) {
     this._stores.push(store)
-  }
+  },
 }
 _RiotControlApi.forEach(api => {
   RiotControl[api] = function() {
-    let args = [].slice.call(arguments)
+    const args = [].slice.call(arguments)
     this._stores.forEach(el => el[api].apply(null, args))
   }
 })
@@ -30,5 +30,5 @@ riot.mixin('controlMixin', {
   onControl(signal, func) {
     riot.control.on(signal, func)
     this.on('unmount', () => riot.control.off(signal, func))
-  }
+  },
 })

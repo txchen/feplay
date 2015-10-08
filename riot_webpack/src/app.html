@@ -26,33 +26,33 @@
     riot.control.trigger(riot.VE.RESET_DATA)
   }
 
-  loadView = (viewName, id) => {
+  this.loadView = (viewName, id) => {
     if (this._currentView) {
       this._currentView.unmount(true)
     }
     this._currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
   }
 
-  studyRoute = (view, id) => {
-    switch(view) {
+  this.studyRoute = (view, id) => {
+    switch (view) {
     case 'categories':
-      loadView('categories-view')
+      this.loadView('categories-view')
       break
     case 'detail':
-      loadView('detail-view', id)
+      this.loadView('detail-view', id)
       break
     case 'posts':
-      loadView('posts-view')
+      this.loadView('posts-view')
       break
     default:
-      loadView('posts-view')
+      this.loadView('posts-view')
     }
   }
 
-  riot.route(studyRoute)
+  riot.route(this.studyRoute)
 
   this.on('mount', () => {
-    riot.route.exec(studyRoute)
+    riot.route.exec(this.studyRoute)
   })
   </script>
 </app>

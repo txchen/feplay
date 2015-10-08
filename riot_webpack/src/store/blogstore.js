@@ -4,7 +4,7 @@ class BlogStore {
   constructor() {
     riot.observable(this)
 
-    let json = window.localStorage.getItem(LOCALSTORAGE_KEY)
+    const json = window.localStorage.getItem(LOCALSTORAGE_KEY)
     if (!json) {
       this.initData()
     } else {
@@ -13,11 +13,11 @@ class BlogStore {
   }
 
   getPostById(id) {
-    return this._posts.filter(p => p.postId == id)[0]
+    return this._posts.filter(post => post.postId === id)[0]
   }
 
   initData() {
-    let defaultPosts = [
+    const defaultPosts = [
       {postId: 1, title: 'Best xbox games', content: 'Halo, GOW', category: 'collection', likes: 10},
       {postId: 2, title: 'Best ps games', content: 'Uncharted, The Last of US', category: 'collection', likes: 20},
       {postId: 3, title: 'Best wii games', content: 'Zelda, Mario', category: 'collection', likes: 16},
@@ -34,7 +34,7 @@ class BlogStore {
   }
 }
 
-let instance = new BlogStore()
+const instance = new BlogStore()
 
 instance.on(riot.VE.LOAD_POSTS, () => {
   instance.trigger(riot.SE.POSTS_CHANGED, instance._posts)
@@ -46,9 +46,9 @@ instance.on(riot.VE.RESET_DATA, () => {
 })
 
 instance.on(riot.VE.LIKE_POST, id => {
-  instance._posts.forEach(p => {
-    if (p.postId == id) {
-      p.likes = p.likes + 1
+  instance._posts.forEach(post => {
+    if (post.postId === id) {
+      post.likes = post.likes + 1
     }
   })
   instance.saveToStorage()

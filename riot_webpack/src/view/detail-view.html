@@ -10,12 +10,12 @@
   this.mixin('controlMixin')
   import stores from '../stores'
 
-  this.onControl(riot.SE.POSTS_CHANGED, posts => {
+  this.onControl(riot.SE.POSTS_CHANGED, _posts => {
     this.readData()
   })
 
   this.readData = () => {
-    this._post = stores.blog.getPostById(opts.data)
+    this._post = stores.blog.getPostById(Number(opts.data))
     this._total = stores.blog._posts.length
     this.update()
   }
