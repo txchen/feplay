@@ -1,0 +1,99 @@
+<modal>
+  <button onclick={ showModal }>Show Modal</button>
+  <!-- must use underscore as attribute name due to browser limitation -->
+  <modal-component name="modalTag" modal_visible={ modalVisible }>
+    <!-- riot's nested html feature by using yield -->
+    <div class="modal-header">
+      <slot name="header">
+        Riot header
+      </slot>
+    </div>
+    <div class="modal-body">
+      <slot name="body">
+        Riot body
+      </slot>
+    </div>
+    <div class="modal-footer">
+      <slot name="footer">
+        Riot footer
+        <button class="modal-default-button" onclick={ parent.hideModal }>OK</button>
+      </slot>
+    </div>
+  </modal-component>
+
+  <script>
+  showModal(e) {
+    this.modalVisible = true
+  }
+  hideModal(e) {
+    this.modalVisible = false
+  }
+  </script>
+</modal>
+
+<modal-component>
+  <div id="modal-mask" class="modal-mask {md-show: opts.modal_visible}">
+    <div class="modal-wrapper">
+      <div class="modal-container">
+        <yield/>
+      </div>
+    </div>
+  </div>
+
+  <style scoped>
+  .modal-mask {
+    position: fixed;
+    visibility: hidden;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    opacity: 0;
+    transition: all .3s;
+  }
+
+  .md-show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: all 0.3s;
+  }
+
+  .md-show .modal-wrapper {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  .modal-container {
+    width: 300px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  .modal-header h3 {
+    margin-top: 0;
+    color: #42b983;
+  }
+
+  .modal-body {
+    margin: 20px 0;
+  }
+
+  .modal-default-button {
+    float: right;
+  }
+  </style>
+</modal-component>
