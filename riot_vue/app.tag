@@ -4,9 +4,11 @@
     <ul>
       <li each={ opts.examples }>
         <a class={ current: link == window.location.hash } href={ link }>{ title }</a>
+        <a if={ link == window.location.hash } target="_blank"
+           href={ sourceCodeUrl + '/tags/' + link.substring(1) + '.html' }>(src)</a>
       </li>
     </ul>
-    <p><a href="https://github.com/txchen/feplay/tree/gh-pages/riot_vue" target="_blank">Source Code</a></p>
+    <p><a href={ sourceCodeUrl } target="_blank">Source Code</a></p>
     <p>RiotJs Ver: { riotver }</p>
     <p><a href="http://vuejs.org/examples" target="_blank">Vuejs versions</a></p>
   </nav>
@@ -14,6 +16,7 @@
 
   <script>
   var self = this
+  self.sourceCodeUrl = 'https://github.com/txchen/feplay/tree/gh-pages/riot_vue'
   self.riotver = riot.version
   self.mountedTag = null
   self.loadedTags = {}
