@@ -15,18 +15,19 @@
 
     <script>
     riot.compile(function() {
-      riot.mount('app', { examples: [
-        {link:"#markdown", title:"Markdown Editor", vuelink:"http://vuejs.org/examples/index.html"},
-        {link:"#githubcommits", title:"Github Commits", vuelink:"http://vuejs.org/examples/commits.html"},
-        {link:"#firebase", title:"Firebase + Validation", vuelink:"http://vuejs.org/examples/firebase.html"},
-        {link:"#gridcomponent", title:"Grid Component", vuelink:"http://vuejs.org/examples/grid-component.html"},
-        {link:"#treeview", title:"Tree View", vuelink:"http://vuejs.org/examples/tree-view.html"},
-        {link:"#svggraph", title:"SVG Graph", vuelink:"http://vuejs.org/examples/svg.html"},
-        {link:"#imageslider", title:"Image Slider Component", vuelink:"http://vuejs.org/examples/image-slider.html"},
-        {link:"#modal", title:"Modal Component", vuelink:"http://vuejs.org/examples/modal.html"},
-        {link:"#hackernews", title:"Hackernews Reader", vuelink:"http://vuejs.org/examples/hackernews.html"},
-        {link:"#todomvc", title:"TodoMVC", vuelink:"http://vuejs.org/examples/todomvc.html"}
-      ]})
+      riot.mount('app', { examples: {
+        markdown: { title:"Markdown Editor", desc:"Simple Markdown editor" },
+        githubcommits: { title:"Github Commits", desc:"This example fetches latest Riot.js commits data from GitHub’s API and displays them as a list. You can switch between the master and dev branches." },
+        firebase: { title:"Firebase + Validation", desc:"This example uses Firebase as the data persistence backend and syncs between clients in real time." },
+        gridcomponent: { title:"Grid Component", desc:"This is an example of creating a reusable grid component and using it with external data." },
+        treeview: { title:"Tree View", desc:"Example of a simple tree view implementation showcasing recursive usage of components." },
+        svggraph: { title:"SVG Graph", desc:"This example showcases how to manipulate svg." },
+        imageslider: { title:"Image Slider Component", desc:"Use riotjs to create a slider" },
+        modal: { title:"Modal Component", desc:"How to use nested html in riotjs" },
+        hackernews: { title:"Hackernews Reader", desc:"This example uses hackernews' offical firebase API." },
+        todomvc: { title:"TodoMVC", desc:"TodoMVC by riotjs" },
+        }
+      })
     })
     </script>
   </body>

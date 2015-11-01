@@ -1,5 +1,5 @@
 <markdown>
-  <style>
+  <style scoped>
   #editor {
     margin: 0;
     height: 100%;
@@ -30,12 +30,12 @@
   }
   </style>
   <div id="editor">
-    <textarea oninput={ edit }># hello</textarea>
+    <textarea oninput={ edit }># hello riot</textarea>
     <div name="resultdiv"></div>
   </div>
 
   <script>
-  this.resultdiv.innerHTML = marked('# hello')
+  this.resultdiv.innerHTML = marked('# hello riot')
   edit(e) {
     this.resultdiv.innerHTML = marked(e.target.value)
   }

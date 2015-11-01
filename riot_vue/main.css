@@ -11,14 +11,12 @@ html, body {
   left: 20px;
   bottom: 0;
   overflow-y: scroll;
-  padding: 2.2em 0;
+  padding: 1.2em 0;
   width: 260px;
   margin-right: 20px;
 }
 #example {
-  margin: 0 0 0 320px;
-  padding: 2.2em 0;
-  max-width: 600px;
+  margin: 0 auto;
   height: 100%;
 }
 #sidenavs ul, a.vuelink {
@@ -37,4 +35,18 @@ html, body {
 a:hover.vuelink,
 #sidenavs a.current {
   border-bottom: 2px solid #42b983;
+}
+#example-content {
+  height: 100%;
+  padding: 2.2em 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+#example-content h1 {
+    margin: 0 0 1em;
+}
+#example-content blockquote {
+  margin: 2em 0;
+  padding-left: 20px;
+  border-left: 4px solid #42b983;
 }

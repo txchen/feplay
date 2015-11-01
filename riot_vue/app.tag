@@ -2,29 +2,35 @@
   <nav id="sidenavs">
     <h2>Examples</h2>
     <ul>
-      <li each={ opts.examples }>
-        <a class={ current: link == window.location.hash } href={ link }>{ title }</a>
-        <a if={ link == window.location.hash } target="_blank"
-           href={ sourceCodeUrl + '/tags/' + link.substring(1) + '.html' }>(src)</a>
+      <li each={ name, data in opts.examples }>
+        <a class={ current: '#' + name == window.location.hash } href={ '#' + name }>{ data.title }</a>
+        <a if={ '#' + name == window.location.hash } target="_blank"
+           href={ sourceCodeUrl + '/tags/' + name + '.html' }>(src)</a>
       </li>
     </ul>
     <p><a href={ sourceCodeUrl } target="_blank">Source Code</a></p>
-    <p>RiotJs Ver: { riotver }</p>
+    <p>RiotJs Ver: { riot.version }</p>
     <p><a href="http://vuejs.org/examples" target="_blank">Vuejs versions</a></p>
   </nav>
-  <div id="example"></div>
+  <div id="example-content">
+    <h1>{ currentExample.title }</h1>
+    <blockquote>
+      <p>{ currentExample.desc }</p>
+    </blockquote>
+    <div id="example"></div>
+  </div>
 
   <script>
   var self = this
   self.sourceCodeUrl = 'https://github.com/txchen/feplay/tree/gh-pages/riot_vue'
-  self.riotver = riot.version
   self.mountedTag = null
   self.loadedTags = {}
 
   this.on('mount', function(){
     riot.route.exec(function(example) {
+      example = example || 'markdown'
       console.log('initial route is ' + example)
-      self.loadExample(example || 'markdown')
+      riot.route(example)
     })
   })
 
@@ -46,6 +52,7 @@
 
   riot.route(function(example) {
     self.loadExample(example)
+    self.currentExample = opts.examples[example]
     self.update()
   })
   </script>
