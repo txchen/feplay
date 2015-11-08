@@ -34,10 +34,6 @@
   var self = this
   self.todos = opts.data || []
 
-  riot.route.exec(function(base, filter) {
-    self.activeFilter = filter || 'all'
-  })
-
   self.on('update', function() {
     self.remaining = self.todos.filter(function(t) {
       return !t.completed
@@ -48,7 +44,6 @@
 
   saveTodos() {
     todoStorage.save(self.todos)
-    self.update()
   }
 
   filteredTodos() {
@@ -82,7 +77,6 @@
         self.todos.splice(self.todos.indexOf(t), 1)
       }
     })
-    self.update()
   }
 
   toggleAll(e) {
@@ -98,10 +92,12 @@
     })
   }
 
-  riot.route(function(base, filter) {
+  riot.route(function(filter) {
     self.activeFilter = filter
     self.update()
   })
+  riot.route.start()
+  riot.route.exec()
   </script>
 </todo>
 
