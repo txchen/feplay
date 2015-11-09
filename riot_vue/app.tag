@@ -26,14 +26,6 @@
   self.mountedTag = null
   self.loadedTags = {}
 
-  this.on('mount', function(){
-    riot.route.exec(function(example) {
-      example = example || 'markdown'
-      console.log('initial route is ' + example)
-      riot.route(example)
-    })
-  })
-
   loadExample(example) {
     console.log('loadExample ' + example)
     if (self.mountedTag) {
@@ -51,9 +43,15 @@
   }
 
   riot.route(function(example) {
+    if (!example) {
+      example = 'markdown'
+      riot.route(example)
+    }
     self.loadExample(example)
     self.currentExample = opts.examples[example]
     self.update()
   })
+  riot.route.start()
+  riot.route.exec()
   </script>
 </app>
