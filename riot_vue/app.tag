@@ -44,14 +44,12 @@
 
   riot.route(function(example) {
     if (!example) {
-      example = 'markdown'
-      riot.route(example)
+      return riot.route('markdown')
     }
     self.loadExample(example)
     self.currentExample = opts.examples[example]
     self.update()
   })
-  riot.route.start()
-  riot.route.exec()
+  riot.route.start(true)
   </script>
 </app>
