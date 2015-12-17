@@ -1,0 +1,25 @@
+<detail-view>
+  <h2>{_post.title}</h2>
+  <p>{_post.content}</p>
+  <p>{_post.likes} Likes</p>
+  <a if={ opts.data > 1 } href="#detail/{ opts.data - 1 }">Previous Post</a> |
+  <a if={ opts.data < _total } href="#detail/{ opts.data - -1 }">Next Post</a>
+
+
+  <script type="es6">
+  this.mixin('controlMixin')
+  import stores from '../stores'
+
+  this.onControl(riot.SE.POSTS_CHANGED, _posts => {
+    this.readData()
+  })
+
+  this.readData = () => {
+    this._post = stores.blog.getPostById(Number(opts.data))
+    this._total = stores.blog._posts.length
+    this.update()
+  }
+
+  this.readData()
+  </script>
+</detail-view>

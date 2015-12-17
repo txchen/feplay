@@ -1,0 +1,17 @@
+<posts-view>
+  <postcell each={_posts} data={this}></postcell>
+
+  <script type="es6">
+  this.mixin('controlMixin')
+  this._posts = []
+
+  this.on('mount', () => {
+    riot.control.trigger(riot.VE.LOAD_POSTS)
+  })
+
+  this.onControl(riot.SE.POSTS_CHANGED, posts => {
+    this._posts = posts
+    this.update()
+  })
+  </script>
+</posts-view>

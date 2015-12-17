@@ -1,0 +1,25 @@
+<categories-view>
+  <div each={category, posts in _postsInCategories}>
+    <h3>{category}</h3>
+    <postcell each={posts} data={this}></postcell>
+    <hr>
+  </div>
+
+  <script type="es6">
+  this.mixin('controlMixin')
+  this._postsInCategories = {}
+
+  this.on('mount', () => {
+    riot.control.trigger(riot.VE.LOAD_POSTS)
+  })
+
+  this.onControl(riot.SE.POSTS_CHANGED, posts => {
+    this._postsInCategories = posts.reduce((map, post) => {
+      map[post.category] = map[post.category] || []
+      map[post.category].push(post)
+      return map
+    }, {})
+    this.update()
+  })
+  </script>
+</categories-view>

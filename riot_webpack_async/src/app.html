@@ -1,0 +1,59 @@
+<app>
+  <section>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#posts">Posts</a></li>
+          <li><a href="#categories">Categories</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <div id="mainview"></div>
+    </article>
+    <footer>
+      <nav>
+        <a onclick={resetData}>Reset Data</a>
+      </nav>
+    </footer>
+  </section>
+
+  <script type="es6">
+
+  this._currentView = null
+
+  this.resetData = () => {
+    riot.control.trigger(riot.VE.RESET_DATA)
+  }
+
+  this.loadView = (viewName, id) => {
+    if (this._currentView) {
+      this._currentView.unmount(true)
+    }
+    console.log(viewName)
+    this._currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
+  }
+
+  this.studyRoute = (view, id) => {
+    switch (view) {
+    case 'categories':
+      this.loadView('categories-view')
+      break
+    case 'detail':
+      this.loadView('detail-view', id)
+      break
+    case 'posts':
+      this.loadView('posts-view')
+      break
+    default:
+      this.loadView('posts-view')
+    }
+  }
+
+  riot.route(this.studyRoute)
+
+  this.on('mount', () => {
+    riot.route.start(true)
+  })
+  </script>
+</app>
