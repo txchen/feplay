@@ -12,9 +12,7 @@ Features:
 
 ### To use Async/Await with babel
 
-Async await is ES7 feature, but we can use it today with babel. Checkout `asyncawait` branch to see how to use it with riotjs.
-
-To enable async/await, about 60KB script size needs to be added.
+Checkout [riot_webpack_async](../riot_webpack_async)
 
 ### To write ES6 in tag script
 

@@ -1,20 +1,18 @@
-## Use webpack and ES6(babel) to build Riotjs app
+## Use webpack and ES7 to build Riotjs app
 
-This tiny example shows how to write ES6 with Riotjs, and use webpack to build the bundled target js to run in the browser environment.
+This tiny example shows how to write ES7(ES6 + async) with Riotjs, and use webpack to build the bundled target js to run in the browser environment.
 
-Online demo: http://txchen.github.io/feplay/riot_webpack/
+Online demo: http://txchen.github.io/feplay/riot_webpack_async/
 
 Features:
-* Javascript in ES6
-* Riot tag script in ES6
+* Javascript and riot tag script in ES7, including async/await
 * Use route, view and component to structure the app
 * Use RiotControl to enable the flux-like app architecture
 
-### To use Async/Await with babel
+### To use async/await
 
-Async await is ES7 feature, but we can use it today with babel. Checkout `asyncawait` branch to see how to use it with riotjs.
-
-To enable async/await, about 60KB script size needs to be added.
+* In detail page, double click the like number. It will count the word and mimic some delay.
+* By including babel/polyfill, the js bundle size will increase about 85kb.
 
 ### To write ES6 in tag script
 

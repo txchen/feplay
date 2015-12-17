@@ -1,10 +1,10 @@
 <detail-view>
   <h2>{_post.title}</h2>
   <p>{_post.content}</p>
-  <p>{_post.likes} Likes</p>
+  <p ondblclick={ countWord }>{ _post.likes } Likes</p>
+  <p if={ _wordsCount }>{ _wordsCount } words</p>
   <a if={ opts.data > 1 } href="#detail/{ opts.data - 1 }">Previous Post</a> |
   <a if={ opts.data < _total } href="#detail/{ opts.data - -1 }">Next Post</a>
-
 
   <script type="es6">
   this.mixin('controlMixin')
@@ -18,6 +18,17 @@
     this._post = stores.blog.getPostById(Number(opts.data))
     this._total = stores.blog._posts.length
     this.update()
+  }
+
+  this.sleep = (ms = 0) => {
+    return new Promise(r => setTimeout(r, ms))
+  }
+
+  this.countWord = async () => {
+    await this.sleep(500)
+    this._wordsCount = this._post.content.split(' ').length
+    await this.sleep(500)
+    this.update() // after await, need to manual trigger
   }
 
   this.readData()
