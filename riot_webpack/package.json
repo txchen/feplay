@@ -16,7 +16,7 @@
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-riot": "^0.1.0",
     "light-server": "^1.0.6",
-    "riot": "^2.2.4",
+    "riot": "^2.3.12",
     "riotjs-loader": "^1.1.3",
     "style-loader": "^0.12.3",
     "webpack": "^1.12.1",

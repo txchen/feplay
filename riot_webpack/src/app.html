@@ -19,7 +19,6 @@
   </section>
 
   <script type="es6">
-
   this._currentView = null
 
   this.resetData = () => {
@@ -30,7 +29,7 @@
     if (this._currentView) {
       this._currentView.unmount(true)
     }
-    this._currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
+    this._currentView = riot.mount('div#mainview', viewName, {data: id})[0]
   }
 
   this.studyRoute = (view, id) => {
@@ -52,7 +51,7 @@
   riot.route(this.studyRoute)
 
   this.on('mount', () => {
-    riot.route.exec(this.studyRoute)
+    riot.route.start(true)
   })
   </script>
 </app>
