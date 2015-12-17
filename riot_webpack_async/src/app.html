@@ -31,7 +31,7 @@
       this._currentView.unmount(true)
     }
     console.log(viewName)
-    this._currentView = riot.mountTo('div#mainview', viewName, {data: id})[0]
+    this._currentView = riot.mount('div#mainview', viewName, {data: id})[0]
   }
 
   this.studyRoute = (view, id) => {
