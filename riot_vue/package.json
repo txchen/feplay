@@ -3,9 +3,9 @@
   "dependencies": {
   },
   "devDependencies": {
-    "light-server": "^1.1.0"
+    "light-server": "^1.1.5"
   },
   "scripts": {
-    "dev": "light-server -s . -w 'js/**'"
+    "dev": "light-server -c .lightserverrc"
   }
 }
