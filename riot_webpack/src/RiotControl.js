@@ -6,7 +6,7 @@ const RiotControl = {
   },
 }
 _RiotControlApi.forEach(api => {
-  RiotControl[api] = function() {
+  RiotControl[api] = function apiHandler() {
     const args = [].slice.call(arguments)
     this._stores.forEach(el => el[api].apply(null, args))
   }
