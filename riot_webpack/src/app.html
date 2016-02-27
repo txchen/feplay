@@ -29,22 +29,22 @@
     if (this._currentView) {
       this._currentView.unmount(true)
     }
-    this._currentView = riot.mount('div#mainview', viewName, {data: id})[0]
+    this._currentView = riot.mount('div#mainview', viewName, { data: id })[0]
   }
 
   this.studyRoute = (view, id) => {
     switch (view) {
-    case 'categories':
-      this.loadView('categories-view')
-      break
-    case 'detail':
-      this.loadView('detail-view', id)
-      break
-    case 'posts':
-      this.loadView('posts-view')
-      break
-    default:
-      this.loadView('posts-view')
+      case 'categories':
+        this.loadView('categories-view')
+        break
+      case 'detail':
+        this.loadView('detail-view', id)
+        break
+      case 'posts':
+        this.loadView('posts-view')
+        break
+      default:
+        this.loadView('posts-view')
     }
   }
 

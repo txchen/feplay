@@ -7,7 +7,7 @@ function(t,o,e){(function(t){"use strict";e(3),e(2),e(4),t.mount("app")}).call(o
 function(t,o,e){"use strict";function n(t){return t&&t.__esModule?t:{"default":t}}Object.defineProperty(o,"__esModule",{value:!0});var i=e(5),a=n(i),s={blog:a["default"]};o["default"]=s,t.exports=o["default"]},/*!****************************!*\
   !*** ./src/RiotControl.js ***!
   \****************************/
-function(t,o,e){(function(t){"use strict";var o=["on","one","off","trigger"],e={_stores:[],addStore:function(t){this._stores.push(t)}};o.forEach(function(t){e[t]=function(){var o=[].slice.call(arguments);this._stores.forEach(function(e){return e[t].apply(null,o)})}}),t.control=e,t.SE={POSTS_CHANGED:"se_posts_changed"},t.VE={RESET_DATA:"ve_reset_data",LIKE_POST:"ve_like_post",LOAD_POSTS:"ve_load_posts"},t.mixin("controlMixin",{onControl:function(o,e){t.control.on(o,e),this.on("unmount",function(){return t.control.off(o,e)})}})}).call(o,e(1))},/*!*************************!*\
+function(t,o,e){(function(t){"use strict";var o=["on","one","off","trigger"],e={_stores:[],addStore:function(t){this._stores.push(t)}};o.forEach(function(t){e[t]=function(){for(var o=arguments.length,e=Array(o),n=0;o>n;n++)e[n]=arguments[n];this._stores.forEach(function(o){return o[t].apply(null,e)})}}),t.control=e,t.SE={POSTS_CHANGED:"se_posts_changed"},t.VE={RESET_DATA:"ve_reset_data",LIKE_POST:"ve_like_post",LOAD_POSTS:"ve_load_posts"},t.mixin("controlMixin",{onControl:function(o,e){t.control.on(o,e),this.on("unmount",function(){return t.control.off(o,e)})}})}).call(o,e(1))},/*!*************************!*\
   !*** ./src/riotTags.js ***!
   \*************************/
 function(t,o,e){"use strict";e(9),e(12),e(10),e(11),e(8)},/*!********************************!*\

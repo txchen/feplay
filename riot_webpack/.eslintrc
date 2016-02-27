@@ -3,6 +3,7 @@
   "plugins": ["riot"],
   "rules" : {
     "semi": [2, "never"],
+    "no-param-reassign": [2, {"props": false}],
     "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_"}],
   },
   "globals": {
