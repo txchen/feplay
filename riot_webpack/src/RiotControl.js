@@ -1,3 +1,4 @@
+/* global riot */
 const _RiotControlApi = ['on', 'one', 'off', 'trigger']
 const RiotControl = {
   _stores: [],
