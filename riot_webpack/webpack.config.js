@@ -17,7 +17,7 @@ module.exports = {
     ],
     loaders: [
       { test: /\.css$/, include: /src/, loader: 'style!css' },
-      { test: /\.js$|\.html$/, include: /src/, loader: 'babel' },
+      { test: /\.js$|\.html$/, include: /src/, loader: 'babel', query: { presets: 'es2015-riot' } },
     ],
   },
   babel: {
