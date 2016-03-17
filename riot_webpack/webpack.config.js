@@ -1,31 +1,36 @@
 var webpack = require('webpack')
 
 module.exports = {
-    cache: true,
-    entry: {
-      app: './src/index.js',
-      vendor: './src/vendor.js',
-    },
-    output: {
-        path: './dist/',
-        publicPath: '/dist/',
-        filename: 'bundle.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.css$/, include: /src/, loader: 'style!css' },
-            { test: /\.html$/, include: /src/, loader: 'riotjs' },
-            { test: /\.js$/, include: /src/, loader: 'babel', query: {modules: 'common'} }
-        ]
-    },
-    plugins: [
-      new webpack.ProvidePlugin({
-        riot: 'riot'
-      }),
-      new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+  cache: true,
+  entry: {
+    app: './src/index.js',
+    vendor: './src/vendor.js',
+  },
+  output: {
+    path: './dist/',
+    publicPath: '/dist/',
+    filename: 'bundle.js',
+  },
+  module: {
+    preLoaders: [
+      { test: /\.html$/, include: /src/, loader: 'riotjs', query: { type: 'none' } },
     ],
-    devServer: {
-        port: 5555
-    },
-    devtool: "source-map"
+    loaders: [
+      { test: /\.css$/, include: /src/, loader: 'style!css' },
+      { test: /\.js$|\.html$/, include: /src/, loader: 'babel' },
+    ],
+  },
+  babel: {
+    presets: ['es2015'],
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      riot: 'riot',
+    }),
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.bundle.js'),
+  ],
+  devServer: {
+    port: 5555,
+  },
+  devtool: 'source-map',
 }

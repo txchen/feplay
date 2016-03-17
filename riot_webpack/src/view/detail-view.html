@@ -1,3 +1,4 @@
+import stores from '../stores'
 <detail-view>
   <h2>{_post.title}</h2>
   <p>{_post.content}</p>
@@ -5,10 +6,8 @@
   <a if={ opts.data > 1 } href="#detail/{ opts.data - 1 }">Previous Post</a> |
   <a if={ opts.data < _total } href="#detail/{ opts.data - -1 }">Next Post</a>
 
-
-  <script type="es6">
+  <script>
   this.mixin('controlMixin')
-  import stores from '../stores'
 
   this.onControl(riot.SE.POSTS_CHANGED, _posts => {
     this.readData()
