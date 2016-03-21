@@ -2,6 +2,12 @@
   <div id="app">
     <h1>{{ msg }}</h1>
   </div>
+  <p>
+    <a v-link="{ path: '/detail' }">Go to Detail</a>
+    <a v-link="{ path: '/posts' }">Go to Posts</a>
+    <a v-link="{ path: '/categories' }">Go to Categories</a>
+  </p>
+  <router-view></router-view>
 </template>
 
 <script>
