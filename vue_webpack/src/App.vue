@@ -1,13 +1,22 @@
 <template>
-  <div id="app">
-    <h1>{{ msg }}</h1>
-  </div>
-  <p>
-    <a v-link="{ path: '/detail' }">Go to Detail</a>
-    <a v-link="{ path: '/posts' }">Go to Posts</a>
-    <a v-link="{ path: '/categories' }">Go to Categories</a>
-  </p>
-  <router-view></router-view>
+  <section>
+    <header>
+      <nav>
+        <ul>
+          <li><a v-link="{ path: '/posts' }">Posts</a></li>
+          <li><a v-link="{ path: '/categories' }">Categories</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <router-view></router-view>
+    </article>
+    <footer>
+      <nav>
+        <a>Reset Data</a>
+      </nav>
+    </footer>
+  </section>
 </template>
 
 <script>
