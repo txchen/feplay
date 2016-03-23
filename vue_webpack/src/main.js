@@ -4,7 +4,6 @@ import CategoriesView from './view/categories-view.vue'
 import DetailView from './view/detail-view.vue'
 import PostsView from './view/posts-view.vue'
 import App from './App.vue'
-import './main.css'
 
 Vue.use(VueRouter)
 
