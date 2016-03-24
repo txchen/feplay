@@ -1,18 +1,5 @@
-# vue_webpack
+## Use Vue and ES6(babel) to build app
 
-> Sample vue webpack project
+This tiny example shows how to write ES6 with vue, vuex, vue-router to write an SPA.
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+The app logic is copied from [riot_webpack](../riot_webpack), which is implemented with riotjs. So you can see to write a same app, which one do you prefer.

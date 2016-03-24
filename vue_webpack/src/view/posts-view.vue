@@ -1,6 +1,5 @@
 <template>
-  <postcell v-for="post in posts">
-  </postcell>
+  <postcell v-for="post in posts" :post="post"></postcell>
 </template>
 
 <script>
@@ -10,14 +9,10 @@ export default {
   components: {
     Postcell
   },
-  data () {
-    return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
-      posts: [1, 2, 3]
-    }
-  }
+  vuex: {
+    getters: {
+      posts: state => state.posts
+    },
+  },
 }
 </script>

@@ -3,8 +3,8 @@
     <header>
       <nav>
         <ul>
-          <li><a v-link="{ path: '/posts' }">Posts</a></li>
-          <li><a v-link="{ path: '/categories' }">Categories</a></li>
+          <li><a v-link="'/posts'">Posts</a></li>
+          <li><a v-link="'/categories'">Categories</a></li>
         </ul>
       </nav>
     </header>
@@ -13,22 +13,22 @@
     </article>
     <footer>
       <nav>
-        <a>Reset Data</a>
+        <a @click="resetData">Reset Data</a>
       </nav>
     </footer>
   </section>
 </template>
 
 <script>
+import store from './vuex/store'
+import { RESET_DATA } from './vuex/mutation-types'
+
 export default {
-  data () {
-    return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
-      msg: 'Hello Vue!'
+  vuex: {
+    actions: {
+      resetData: ({ dispatch }) => dispatch(RESET_DATA)
     }
-  }
+  },
+  store,
 }
 </script>

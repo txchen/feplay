@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "viewdist": "light-server -s . -p 8080"
   },
   "dependencies": {
     "vue": "^1.0.0"
@@ -20,12 +21,15 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.4",
     "json-loader": "^0.5.4",
+    "light-server": "^1.1.6",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.2.1",
     "vue-router": "^0.7.11",
     "vue-style-loader": "^1.0.0",
+    "vuex": "^0.6.2",
+    "vuex-router-sync": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   }

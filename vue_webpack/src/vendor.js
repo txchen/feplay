@@ -1,3 +1,5 @@
 import './main.css'
 import 'vue'
 import 'vue-router'
+import 'vuex'
+import 'vuex-router-sync'
