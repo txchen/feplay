@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 import { sync } from 'vuex-router-sync'
 import store from './vuex/store'
 import CategoriesView from './view/categories-view.vue'
@@ -15,18 +14,18 @@ const router = new VueRouter()
 
 router.map({
   '/categories': {
-    component: CategoriesView
+    component: CategoriesView,
   },
   '/detail/:postId': {
-    component: DetailView
+    component: DetailView,
   },
   '/posts': {
-    component: PostsView
-  }
+    component: PostsView,
+  },
 })
 
 router.redirect({
-  '*': '/posts'
+  '*': '/posts',
 })
 
 sync(store, router)

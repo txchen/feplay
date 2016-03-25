@@ -9,52 +9,64 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'build.js',
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.vue$/,
+        loader: 'eslint',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        exclude: /node_modules/,
+      },
+    ],
     loaders: [
       {
         test: /\.css$/,
-        loader: "vue-style!css"
+        loader: 'vue-style!css',
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue',
       },
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json',
       },
       {
         test: /\.html$/,
-        loader: 'vue-html'
+        loader: 'vue-html',
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url',
         query: {
           limit: 10000,
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
+          name: '[name].[ext]?[hash]',
+        },
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.bundle.js'),
   ],
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
   },
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -63,14 +75,14 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
+        NODE_ENV: '"production"',
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
   ])
 }

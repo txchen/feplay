@@ -10,9 +10,8 @@
 export default {
   vuex: {
     getters: {
-      currentPost: state => {
-        return state.posts.filter(p => p.postId === Number(state.route.params.postId))[0]
-      },
+      currentPost: state =>
+        state.posts.filter(p => p.postId === Number(state.route.params.postId))[0],
       totalPostsCount: state => state.posts.length,
       currentPostId: state => Number(state.route.params.postId),
     },

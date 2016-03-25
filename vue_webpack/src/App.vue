@@ -26,8 +26,8 @@ import { RESET_DATA } from './vuex/mutation-types'
 export default {
   vuex: {
     actions: {
-      resetData: ({ dispatch }) => dispatch(RESET_DATA)
-    }
+      resetData: ({ dispatch }) => dispatch(RESET_DATA),
+    },
   },
   store,
 }

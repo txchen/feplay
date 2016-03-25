@@ -23,22 +23,21 @@ function getDefaultData() {
       category: 'review', likes: 40 },
   ]
 }
-
-const state = {
-  posts: JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || getDefaultData()
-}
-
 const mutations = {
-  [RESET_DATA] (state) {
+  [RESET_DATA](state) {
     state.posts = getDefaultData()
   },
-  [LIKE_POST] (state, post) {
+  [LIKE_POST](state, post) {
     post.likes++
-  }
+  },
+}
+
+const state = {
+  posts: JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || getDefaultData(),
 }
 
 export default new Vuex.Store({
   state,
   mutations,
-  middlewares
+  middlewares,
 })

@@ -14,10 +14,8 @@ export default {
   props: ['post'],
   vuex: {
     actions: {
-      likePost: ({ dispatch }, post) => {
-        dispatch(LIKE_POST, post)
-      }
-    }
-  }
+      likePost: ({ dispatch }, post) => dispatch(LIKE_POST, post),
+    },
+  },
 }
 </script>

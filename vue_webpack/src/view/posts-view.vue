@@ -7,11 +7,11 @@ import Postcell from '../component/postcell.vue'
 
 export default {
   components: {
-    Postcell
+    Postcell,
   },
   vuex: {
     getters: {
-      posts: state => state.posts
+      posts: state => state.posts,
     },
   },
 }

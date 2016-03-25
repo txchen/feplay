@@ -11,7 +11,7 @@ import Postcell from '../component/postcell.vue'
 
 export default {
   components: {
-    Postcell
+    Postcell,
   },
   vuex: {
     getters: {
@@ -19,7 +19,7 @@ export default {
         map[post.category] = map[post.category] || []
         map[post.category].push(post)
         return map
-      }, {})
+      }, {}),
     },
   },
 }
