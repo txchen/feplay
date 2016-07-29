@@ -6,7 +6,7 @@
     <button onclick={likePost}>Like</button>
   </div>
 
-  <script type="es6">
+  <script>
   this.likePost = () => {
     riot.control.trigger(riot.VE.LIKE_POST, opts.data.postId)
   }

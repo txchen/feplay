@@ -14,8 +14,19 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, include: /src/, loader: 'style!css' },
-      { test: /\.html$/, include: /src/, loader: 'riotjs' },
-      { test: /\.js$/, include: /src/, loader: 'babel', query: { modules: 'common' } },
+      {
+        test: /\.js?$/,
+        loader: 'babel-loader',
+        include: /src/
+      },
+      {
+        test: /\.html?$/,
+        loader: 'tag-loader',
+        include: /src/,
+        query: {
+          type: 'babel'
+        }
+      },
     ],
   },
   plugins: [
