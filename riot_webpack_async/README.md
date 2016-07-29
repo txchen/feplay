@@ -12,21 +12,9 @@ Features:
 ### To use async/await
 
 * In detail page, double click the like number. It will count the word and mimic some delay.
-* By including babel/polyfill, the js bundle size will increase about 85kb.
+* By including babel-polyfill, the js bundle size will increase about 85kb.
 
 ### To write ES6 in tag script
-
-The change is simple, just set the `type` to `es6` in the `script` element:
-
-```html
-<my-tag>
-  <!-- Tag html here -->
-
-  <script type="es6">
-  <!-- Tag script here -->
-  </script>
-</my-tag>
-```
 
 Riot's default mini-ES6 method syntax cannot work when we are using babel, so we need to change:
 
@@ -44,7 +32,7 @@ this.buttonHandler = e => {
 
 ### Setup webpack to compile riot tags
 
-`riotjs-loader` is needed, install it as devDependencies, then configure in `webpack.config.js`.
+`tag-loader` is needed, install it as devDependencies, then configure in `webpack.config.js`.
 
 You don't have to import 'riot' everywhere, instead, use `webpack.ProvidePlugin` to make it available everywhere.
 

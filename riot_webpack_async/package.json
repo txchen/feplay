@@ -16,6 +16,7 @@
     "css-loader": "^0.23.1",
     "eslint": "^3.1.1",
     "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-riot": "^0.1.4",
     "light-server": "^1.1.5",
     "riot": "^2.5.0",
@@ -23,8 +24,5 @@
     "tag-loader": "^0.3.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
-  },
-  "babel": {
-    "stage": 1
   }
 }
