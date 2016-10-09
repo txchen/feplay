@@ -1,18 +1,17 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <el-popover
-      ref="popover2"
-      placement="top-start"
-      title="标题"
-      width="200"
-      trigger="hover"
-      content="这是一段容,这是一段容,这是一段容,这是一段容。">
-    </el-popover>
     <el-table :data="rows" stripe border>
       <el-table-column property="a" label="a" sortable></el-table-column>
       <el-table-column inline-template label="b">
-        <el-button v-popover:popover2>{{ row.b }}</el-button>
+        <el-popover
+          placement="right"
+          title="Title"
+          width="100"
+          trigger="hover">
+          <p>{{ row.a }}</p>
+          <el-button type="text" slot="reference">{{ row.b }}</el-button>
+        </el-popover>
       </el-table-column>
     </el-table>
   </div>
@@ -26,7 +25,9 @@ export default {
       rows: [
         { a: 1, b: 2 },
         { a: 3, b: 4 },
-        { a: 5, b: 6 }
+        { a: 5, b: 6 },
+        { a: 7, b: 8 },
+        { a: 9, b: 10 }
       ]
     }
   }
