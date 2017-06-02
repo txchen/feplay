@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --inline",
     "dist": "webpack -p -d",
     "viewdist": "light-server -s . -p 7000",
     "lint": "eslint --ext .js,.es6,.html src/*"
